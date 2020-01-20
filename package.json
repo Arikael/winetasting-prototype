@@ -1,0 +1,21 @@
+{
+  "name": "winetasting-prototype",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "start": "http-server"
+  },
+  "keywords": [
+    "wine",
+    "tasting"
+  ],
+  "author": "Michael Häberle",
+  "license": "ISC",
+  "devDependencies": {
+    "http-server": "^0.12.1"
+  },
+  "dependencies": {
+    "squirrelly": "^7.9.0"
+  }
+}

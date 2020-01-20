@@ -1,0 +1,195 @@
+{
+    "categories": [
+        {
+            "name": "Erde",
+            "color": "",
+            "tastes": [
+                {
+                    "name": "beeswax",
+                    "title": "Bienenwachs",
+                    "color": ""
+                },
+                {
+                    "name": "ginger",
+                    "icon": "028-ginger.svg",
+                    "title": "Ingwer",
+                    "color": ""
+                },
+                {
+                    "name": "petroleum",
+                    "title": "Petrol",
+                    "color": ""
+                },
+                {
+                    "name": "wetSlate",
+                    "title": "nasser Schiefer",
+                    "color": ""
+                },
+                {
+                    "name": "chalk",
+                    "title": "Kalk",
+                    "color": ""
+                }
+            ]
+        },
+        {
+            "name": "Kräuter",
+            "color": "",
+            "tastes": [
+                {
+                    "name": "jasmine",
+                    "title": "Jasmin",
+                    "color": ""
+                },
+                {
+                    "name": "honeysuckle",
+                    "title": "Geisblatt",
+                    "color": ""
+                },
+                {
+                    "name": "vanilla",
+                    "title": "Vanille",
+                    "color": ""
+                },
+                {
+                    "name": "Nutmeg",
+                    "title": "Muskatnuss",
+                    "color": ""
+                },
+                {
+                    "name": "cinnamon",
+                    "title": "Zimt",
+                    "color": ""
+                },
+                {
+                    "name": "whitePepper",
+                    "title": "weisser Pfeffer",
+                    "color": ""
+                },
+                {
+                    "name": "thaiBasil",
+                    "icon": "054-basil.svg",
+                    "title": "Thai Basillikum",
+                    "color": ""
+                },
+                {
+                    "name": "rosemary",
+                    "title": "Rosmarin",
+                    "color": ""
+                }
+            ]
+        },
+        {
+            "name": "Zitrus",
+            "color": "",
+            "tastes": [
+                {
+                    "name": "lime",
+                    "icon": "066-lime.svg",
+                    "title": "Limette",
+                    "color": ""
+                },
+                {
+                    "name": "lemon",
+                    "icon": "045-lemon.svg",
+                    "title": "Zitrone",
+                    "color": ""
+                },
+                {
+                    "name": "citrusZest",
+                    "title": "Zitruszeste",
+                    "color": ""
+                },
+                {
+                    "name": "pinkGrapefruit",
+                    "icon": "065-grapefruit.svg",
+                    "title": "Pink Grapefruit",
+                    "color": ""
+                }
+            ]
+        },
+        {
+            "name": "Frucht",
+            "color": "",
+            "tastes": [
+                {
+                    "name": "greenApple",
+                    "icon": "001-apple.svg",                
+                    "title": "grüner Apfel",
+                    "color": ""
+                },
+                {
+                    "name": "pear",
+                    "icon": "012-pear.svg",
+                    "title": "Birne",
+                    "color": ""
+                },
+                {
+                    "name": "cantaloupe",
+                    "icon": "040-melon.svg",
+                    "title": "Melone",
+                    "color": ""
+                },
+                {
+                    "name": "nectarine",
+                    "icon": "068-peach.svg",
+                    "title": "Nektarine",
+                    "color": ""
+                },
+                {
+                    "name": "apricot",
+                    "icon": "023-apricot.svg",
+                    "title": "Aprikose",
+                    "color": ""
+                }
+            ]
+        },
+        {
+            "name": "tropische Frucht",
+            "color": "",
+            "tastes": [
+                {
+                    "name": "starfruit",
+                    "title": "Sternfrucht",
+                    "color": ""
+                },
+                {
+                    "name": "papaya",
+                    "icon": "019-papaya.svg",
+                    "title": "Papaya",
+                    "color": ""
+                },
+                {
+                    "name": "mango",
+                    "icon": "024-mango.svg",
+                    "title": "Mango",
+                    "color": ""
+                },
+                {
+                    "name": "guava",
+                    "icon": "072-guava.svg",
+                    "title": "Guave",
+                    "color": ""
+                }
+            ]
+        },
+        {
+            "name": "rote Frucht",
+            "color": "",
+            "tastes": [
+                {
+                    "name": "strawberry",
+                    "icon": "021-strawberry.svg",
+                    "title": "Erdbeere",
+                    "color": ""
+                },
+                {
+                    "name": "cherry",
+                    "icon": "015-cherry.svg",
+                    "title": "Kirsce",
+                    "color": ""
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,129 @@
+<html>
+
+<head>
+    <title>Wine Tasting Prototype</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/squirrelly@latest/dist/squirrelly.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Montserrat;
+            margin: 0;
+        }
+        
+        .taste-category {
+            background: brown;
+        }
+
+        .taste-category__description {
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+
+        .tastes {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .taste {
+            text-align: center;
+            position: relative;
+            width: 66px;
+            height: 66px;
+            text-align: center;
+            padding: 6px;
+            margin-right: 6px;
+            margin-bottom: 6px;
+            background: gray;
+        }
+
+        .taste__icon {
+            width: 36px;
+            height: 36px;
+        }
+
+        .taste__description {
+            margin: 0;
+            font-size: 11px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="taste-data">
+    </div>
+    <div class="debug-information">
+
+    </div>
+    <template id="tastesTemplate">
+        {{each(options.categories)}}
+        <div class="taste-category {{@this.name}}">
+            <h2 class="taste-category__description">{{@this.name}}</h2>
+            <div class="tastes">
+                {{each(@this.tastes)}}
+                <div class="taste {{@this.name}}">
+                    {{if(@this.icon)}}
+                    <object class="taste__icon" data="/icons/{{@this.icon}}" type="image/svg+xml"></object>
+                    {{/if}}
+                    <p class="taste__description">{{@this.title}}</p>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        {{/each}}
+    </template>
+    <template id="debugInformationTemplate">
+        <h2>Debug Information</h2>
+        <table>
+            <tr>
+                <td>Pixel Ratio</td>
+                <td>{{pixelRatio}}</td>
+            </tr>
+            <tr>
+                <td>Physical Resolution</td>
+                <td>{{physicalResolution}}</td>
+            </tr>
+            <tr>
+                <td>Logical Resolution</td>
+                <td>{{logicalResolution}}</td>
+            </tr>
+        </table>
+    </template>
+    <script type="text/javascript">
+        var loadFn = function () {
+            var pixelRatio = window.devicePixelRatio;
+            var logicalResolution = `${window.screen.availWidth}x${window.screen.availHeight}`;
+            var physicalResolution = `${window.screen.availWidth * pixelRatio}x${window.screen.availHeight * pixelRatio}`;
+
+            var template = document.querySelector('#debugInformationTemplate').innerHTML;
+            var debugInfoData = {
+                pixelRatio,
+                logicalResolution,
+                physicalResolution
+            };
+
+            var debugInfo = Sqrl.Render(template, debugInfoData);
+            document.querySelector('.debug-information').innerHTML = debugInfo;
+
+            var tasteRequest = new XMLHttpRequest();
+            tasteRequest.open('GET', 'tastes.json');
+            tasteRequest.responseType = 'json';
+            tasteRequest.send();
+            tasteRequest.onload = function () {
+                console.log(tasteRequest.response);
+                var tasteTemplate = document.querySelector('#tastesTemplate').innerHTML;
+                var tastes = Sqrl.Render(tasteTemplate, tasteRequest.response);
+                document.querySelector('.taste-data').innerHTML = tastes;
+            }
+        };
+
+        document.addEventListener("DOMContentLoaded", loadFn);
+    </script>
+</body>
+
+</html>

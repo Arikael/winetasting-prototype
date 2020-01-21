@@ -13,10 +13,13 @@
         body {
             font-family: Montserrat;
             margin: 0;
+            --base-padding: 3px;
+            --double-padding: calc(2 * var(--base-padding));
         }
-        
+
         .taste-category {
             background: brown;
+            padding: var(--base-padding);
         }
 
         .taste-category__description {
@@ -27,29 +30,54 @@
         .tastes {
             display: flex;
             flex-wrap: wrap;
+            width: 100%;
         }
 
         .taste {
-            text-align: center;
+            --size: calc(20% - 2*var(--base-padding));
+
             position: relative;
-            width: 66px;
-            height: 66px;
+            width: var(--size);
             text-align: center;
-            padding: 6px;
-            margin-right: 6px;
-            margin-bottom: 6px;
+            margin: 0 var(--base-padding) calc(2*var(--base-padding)) var(--base-padding);
             background: gray;
+            border-radius: calc(2*var(--base-padding));
+        }
+
+        .taste::before {
+            display: block;
+            content: "";
+            margin-top: 100%;
+        }
+
+        .taste__content {
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            text-align: center;
+            padding: var(--double-padding);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .taste__icon {
-            width: 36px;
-            height: 36px;
+            width: 50%;
+            height: 50%;
+            flex: 0 0 50%;
         }
 
-        .taste__description {
+        .taste__description-container {
             margin: 0;
             font-size: 11px;
             text-align: center;
+            flex: 1 0 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
     </style>
 </head>
@@ -67,10 +95,13 @@
             <div class="tastes">
                 {{each(@this.tastes)}}
                 <div class="taste {{@this.name}}">
-                    {{if(@this.icon)}}
-                    <object class="taste__icon" data="/icons/{{@this.icon}}" type="image/svg+xml"></object>
-                    {{/if}}
-                    <p class="taste__description">{{@this.title}}</p>
+                    <div class="taste__content">
+                        {{if(@this.icon)}}
+                        <object class="taste__icon" data="/icons/{{@this.icon}}" type="image/svg+xml"></object>
+                        {{/if}}
+                        <div class="taste__description-container"><span class="taste__description">{{@this.title}}</span>
+                        </div>
+                    </div>
                 </div>
                 {{/each}}
             </div>

@@ -15,7 +15,5 @@
   "devDependencies": {
     "http-server": "^0.12.1"
   },
-  "dependencies": {
-    "squirrelly": "^7.9.0"
-  }
+  "dependencies": {}
 }

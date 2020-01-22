@@ -9,11 +9,8 @@
 </head>
 
 <body>
-    <div class="taste-data">
-    </div>
-    <div class="debug-information">
-
-    </div>
+    <div id="taste-data"></div>
+    <div class="debug-information"></div>
     <template id="tastesTemplate">
         {{each(options.categories)}}
         <div class="taste-category {{@this.name}}">
@@ -25,7 +22,8 @@
                         {{if(@this.icon)}}
                         <object class="taste__icon" data="/icons/{{@this.icon}}" type="image/svg+xml"></object>
                         {{/if}}
-                        <div class="taste__description-container"><span class="taste__description">{{@this.title}}</span>
+                        <div class="taste__description-container"><span
+                                class="taste__description">{{@this.title}}</span>
                         </div>
                     </div>
                 </div>
@@ -36,6 +34,14 @@
     </template>
     <template id="debugInformationTemplate">
         <h2>Debug Information</h2>
+        <h3>Toggle Styles</h3>
+        <button data-style="simple">simple rounded colored</button>
+        <button data-style="simple">rectangle simple colored</button>
+        <button data-style="simple">simple rounded white</button>
+        <button data-style="simple">rectangle simple white</button>
+
+
+        <h3>Display Information</h3>
         <table>
             <tr>
                 <td>Pixel Ratio</td>
@@ -75,8 +81,17 @@
                 console.log(tasteRequest.response);
                 var tasteTemplate = document.querySelector('#tastesTemplate').innerHTML;
                 var tastes = Sqrl.Render(tasteTemplate, tasteRequest.response);
-                document.querySelector('.taste-data').innerHTML = tastes;
+                document.querySelector('#taste-data').innerHTML = tastes;
             }
+
+            var styleButtons = document.querySelectorAll('[data-style');
+
+            Array.from(styleButtons).forEach(function (element) {
+                element.addEventListener('click', function (event) {
+                    var styleClass = event.srcElement.getAttribute('data-style');
+                    document.querySelector('#taste-data').className = styleClass;
+                });
+            });
         };
 
         document.addEventListener("DOMContentLoaded", loadFn);

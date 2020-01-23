@@ -13,9 +13,57 @@ body {
     padding: var(--base-padding);
 }
 
+.taste-category.earth {
+    background: rgba(198, 163, 128, 0.52);
+}
+
+.taste-category.earth .taste-category__description {
+    color: rgb(95, 69, 43);
+}
+
+.taste-category.herbs .taste-category__description {
+    color: rgb(80, 102, 15);
+}
+
+.taste-category.citrus .taste-category__description {
+    color: rgb(109, 99, 3);
+}
+
+.taste-category.fruit .taste-category__description {
+    color: rgb(112, 84, 0);
+}
+
+.taste-category.tropicalFruit .taste-category__description {
+    color: rgb(138, 83, 0);
+}
+
+.taste-category.redFruit .taste-category__description {
+    color: rgb(141, 27, 38);
+}
+
+.taste-category.herbs {
+    background: rgba(190, 228, 74, 0.36);
+}
+
+.taste-category.citrus {
+    background: rgba(251, 236, 101, 0.49);
+}
+
+.taste-category.fruit {
+    background: rgba(255, 193, 7, 0.18);
+}
+
+.taste-category.tropicalFruit {
+    background: rgba(255, 195, 105, 0.45);
+}
+
+.taste-category.redFruit {
+    background: rgba(220, 70, 85, 0.3);
+}
+
 .taste-category__description {
     font-size: 12px;
-    margin: 3px 0 3px 3px;
+    margin: 3px 0 6px 3px;
 }
 
 .tastes {
@@ -26,8 +74,8 @@ body {
 }
 
 .taste {
-    --size: calc(25% - 3*var(--base-padding));
-
+    --size: calc(25% - 2*var(--base-padding));
+    background: white;
     position: relative;
     width: var(--size);
     text-align: center;

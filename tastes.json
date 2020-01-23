@@ -1,7 +1,8 @@
 {
     "categories": [
         {
-            "name": "Erde",
+            "name": "earth",
+            "title": "Erde",
             "color": "",
             "tastes": [
                 {
@@ -33,8 +34,8 @@
             ]
         },
         {
-            "name": "Kräuter",
-            "color": "",
+            "name": "herbs",
+            "title": "Kräuter",
             "tastes": [
                 {
                     "name": "jasmine",
@@ -80,8 +81,8 @@
             ]
         },
         {
-            "name": "Zitrus",
-            "color": "",
+            "name": "citrus",
+            "title": "Zitrus",
             "tastes": [
                 {
                     "name": "lime",
@@ -109,8 +110,8 @@
             ]
         },
         {
-            "name": "Frucht",
-            "color": "",
+            "name": "fruit",
+            "title": "Frucht",
             "tastes": [
                 {
                     "name": "greenApple",
@@ -145,8 +146,8 @@
             ]
         },
         {
-            "name": "tropische Frucht",
-            "color": "",
+            "name": "tropicalFruit",
+            "title": "tropische Frucht",
             "tastes": [
                 {
                     "name": "starfruit",
@@ -174,8 +175,8 @@
             ]
         },
         {
-            "name": "rote Frucht",
-            "color": "",
+            "name": "redFruit",
+            "title": "rote Frucht",
             "tastes": [
                 {
                     "name": "strawberry",

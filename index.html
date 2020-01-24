@@ -82,8 +82,21 @@
                 var tasteTemplate = document.querySelector('#tastesTemplate').innerHTML;
                 var tastes = Sqrl.Render(tasteTemplate, tasteRequest.response);
                 document.querySelector('#taste-data').innerHTML = tastes;
+                //taste buttons
+                var tasteButtons = document.querySelectorAll('.taste');
+                Array.from(tasteButtons).forEach(function (element) {
+                    var 
+                    
+                    element.addEventListener('click', function (event) {
+
+                        setTimeout()
+                        console.log(event.detail);
+                        event.currentTarget.classList.toggle('selected');
+                    });
+                });
             }
 
+            //style switcher
             var styleButtons = document.querySelectorAll('[data-style');
 
             Array.from(styleButtons).forEach(function (element) {

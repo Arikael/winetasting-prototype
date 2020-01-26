@@ -7,7 +7,7 @@
     <link href="styles.css" rel="stylesheet">
     <script src="https://unpkg.com/squirrelly@latest/dist/squirrelly.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
-    <script src="alloy_finger.js"></script>
+    <script src="scripts.js"></script>
 </head>
 
 <body>
@@ -15,11 +15,11 @@
     <div class="debug-information"></div>
     <template id="tastesTemplate">
         {{each(options.categories)}}
-        <div class="taste-category {{@this.name}}">
+        <div class="taste-category {{@this.name}}" data-name="{{@this.name}}">
             <h2 class="taste-category__description">{{@this.title}}</h2>
             <div class="tastes">
                 {{each(@this.tastes)}}
-                <div class="taste {{@this.name}}">
+                <div class="taste {{@this.name}}" data-name="{{@this.name}}">
                     <div class="taste__content">
                         {{if(@this.icon)}}
                         <object class="taste__icon" data="/icons/{{@this.icon}}" type="image/svg+xml"></object>
@@ -59,76 +59,52 @@
             </tr>
         </table>
     </template>
+
+    <template id="taste-edit">
+        <div class="taste-edit__title">
+            {{title}}
+        </div>
+        <div class="taste-edit__details">
+            <div class="taste-edit__when">
+                <ul class="flat">
+                    <li>
+                        <button class="btn">sofort</button>
+                    </li>
+                    <li>
+                        <button class="btn">mit etwas Luft</button>
+                    </li>
+                    <li>
+                        <button class="btn">nach einer Zeit</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="taste-edit__howmuch">
+                <ul class="flat">
+                    <li>
+                        <button class="btn">Spuren</button>
+                    </li>
+                    <li>
+                        <button class="btn">etwas</button>
+                    </li>
+                    <li>
+                        <button class="btn">viel</button>
+                    </li>
+                    <li>
+                        <button class="btn">zu viel</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </template>
+
+    <div id="taste-edit-dialog"></div>
+
     <script type="text/javascript">
-        var loadFn = function () {
-            var pixelRatio = window.devicePixelRatio;
-            var logicalResolution = `${window.screen.availWidth}x${window.screen.availHeight}`;
-            var physicalResolution = `${window.screen.availWidth * pixelRatio}x${window.screen.availHeight * pixelRatio}`;
-
-            var template = document.querySelector('#debugInformationTemplate').innerHTML;
-            var debugInfoData = {
-                pixelRatio,
-                logicalResolution,
-                physicalResolution
-            };
-
-            var debugInfo = Sqrl.Render(template, debugInfoData);
-            document.querySelector('.debug-information').innerHTML = debugInfo;
-
-            var tasteRequest = new XMLHttpRequest();
-            tasteRequest.open('GET', 'tastes.json');
-            tasteRequest.responseType = 'json';
-            tasteRequest.send();
-            tasteRequest.onload = function () {
-                console.log(tasteRequest.response);
-                var tasteTemplate = document.querySelector('#tastesTemplate').innerHTML;
-                var tastes = Sqrl.Render(tasteTemplate, tasteRequest.response);
-                document.querySelector('#taste-data').innerHTML = tastes;
-                //taste buttons
-                var tasteButtons = document.querySelectorAll('.taste');
-                Array.from(tasteButtons).forEach(function (element) {
-
-                    var hammer = new Hammer.Manager(element, {});
-
-                    var singleTap = new Hammer.Tap({ event: 'singletap' });
-                    var doubleTap = new Hammer.Tap({ event: 'doubletap', taps: 2 });
-
-                    hammer.add([doubleTap, singleTap]);
-
-                    doubleTap.recognizeWith(singleTap);
-
-                    singleTap.requireFailure([doubleTap]);
-
-                    hammer.on('singletap', function (event) {
-                        var currentTarget = event.srcEvent.path.find(function (element) {
-                            if (!element.classList) return false;
-
-                            return element.classList.contains('taste');
-                        });
-
-                        if (currentTarget) {
-                            currentTarget.classList.toggle('selected');
-                        }
-                    });
-
-                    hammer.on('doubletap', function() {
-                        console.log('double');
-                    })
-                });
-            }
-
-            //style switcher
-            var styleButtons = document.querySelectorAll('[data-style');
-
-            Array.from(styleButtons).forEach(function (element) {
-                element.addEventListener('click', function (event) {
-                    var styleClass = event.srcElement.getAttribute('data-style');
-                    document.querySelector('#taste-data').className = styleClass;
-                });
-            });
-        };
+        
 
         document.addEventListener("DOMContentLoaded", loadFn);
+
+        
     </script>
 </body>
 

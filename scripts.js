@@ -79,7 +79,6 @@ var loadFn = function () {
 };
 
 function findTaste(srcEvent) {
-
     var currentElement = srcEvent.target;
 
     while(currentElement != null) {

@@ -140,6 +140,30 @@ body {
     bottom: 0;
 }
 
+.taste-edit__header {
+    height: 2rem;
+    background: #2196F3;
+    display: flex;
+    color: white;
+    padding: 0 0.5rem;
+}
+
+.taste-edit__back .fa-chevron-left,
+.taste-edit__title,
+.taste-edit__save {
+    line-height: 2rem;
+}
+
+.taste-edit__back,
+.taste-edit__save {
+    flex: 0 0 auto;
+}
+
+.taste-edit__title {
+    flex: 1 1 auto;
+    text-align: center;
+}
+
 ul.flat {
     margin:0;
     padding: 0;

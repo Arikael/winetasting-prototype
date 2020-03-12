@@ -127,7 +127,6 @@ body {
 
 #taste-edit-dialog {
     display: none;
-    padding: 9px;
 }
 
 #taste-edit-dialog.open {
@@ -141,27 +140,64 @@ body {
 }
 
 .taste-edit__header {
-    height: 2rem;
-    background: #2196F3;
+    height: 12rem;
+    position: relative;
     display: flex;
-    color: white;
-    padding: 0 0.5rem;
-}
-
-.taste-edit__back .fa-chevron-left,
-.taste-edit__title,
-.taste-edit__save {
-    line-height: 2rem;
-}
-
-.taste-edit__back,
-.taste-edit__save {
-    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
 }
 
 .taste-edit__title {
-    flex: 1 1 auto;
     text-align: center;
+}
+
+.taste-name {
+    margin-top: 0.5rem;
+}
+
+.i-smell {
+    margin-bottom: 0.5rem;
+}
+
+.taste-edit__back {
+    position: absolute;
+    top: 0.5rem;
+    text-align: right;
+    transform: translateX(-100%);
+    right: 0.5rem;
+}
+
+.title-icon {
+    border-radius: 50%;
+    height: 5rem;
+    width: 5rem;
+    text-align: center;
+    margin: 0 auto;
+    background: #d8bb663d;
+    padding: 1rem;
+}
+
+.title-icon__svg {
+    width: 100%;
+    height: 100%;
+}
+
+.taste-edit__details {
+    padding: 0 0.5rem;
+}
+
+.taste-edit__headline {
+    font-size: 1rem;
+    margin: 0;
+    margin-bottom: 0.25rem;
+}
+
+.tate-edit__ok {
+    margin-top: 2rem;
+    width: 100%;
+    background: #8BC34A;
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 ul.flat {
@@ -172,11 +208,19 @@ ul.flat {
 
 ul.flat li {
     margin-bottom: 8px;
+    display: inline-block;
+    margin-right: 0.25rem;
+}
+
+ul.flat li:last-child {
+    margin-right: 0;
 }
 
 .btn {
-    background: #dedede;
-    border-radius: 10px;
-    padding: 8px 8px;
-    border: 1px solid gray; 
+    background: #3F51B5;
+    border-radius: 3px;
+    padding: 10px 16px;
+    border: none;
+    box-shadow: 1px 2px 3px 0px #00000070;
+    color: white;
 }

@@ -57,6 +57,7 @@ var loadFn = function () {
                 var taste = category.tastes.find(function (element) {
                     return element.name === tasteName;
                 });
+console.log(taste);
 
                 var tasteEditTemplate = document.querySelector('#taste-edit').innerHTML;
                 var tastes = Sqrl.Render(tasteEditTemplate, taste);

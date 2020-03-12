@@ -16,7 +16,7 @@
     <div class="debug-information"></div>
     <template id="tastesTemplate">
         {{each(options.categories)}}
-        <div class="taste-category {{@this.name}}" data-name="{{@this.name}}">
+        <div class="taste-category {{@this.name}}" data-name="{{@this.name}}" data-icon="{{@this.icon}}">
             <h2 class="taste-category__description">{{@this.title}}</h2>
             <div class="tastes">
                 {{each(@this.tastes)}}
@@ -63,17 +63,20 @@
 
     <template id="taste-edit">
         <div class="taste-edit__header">
-            <div class="taste-edit__header-back">
-                <i class="fas fa-chevron-left"></i>
+            <div class="taste-edit__back">
+                <i class="far fa-times"></i>
             </div>
             <div class="taste-edit__title">
-                {{title}}
-            </div>
-            <div class="taste-edit__save">
-                <i class="fas fa-check"></i> <span>Save</span>
+                <div class="title-icon">
+                    <object class="title-icon__svg" data="/icons/{{icon}}" type="image/svg+xml"></object>
+                </div>
+                <div clss="title-text">
+                    {{title}}
+                </div>
             </div>
         </div>
         <div class="taste-edit__details">
+            <h2 class="taste-edit__headline i-smell">Ich schmecke</h2>
             <div class="taste-edit__when">
                 <ul class="flat">
                     <li>
@@ -103,6 +106,10 @@
                     </li>
                 </ul>
             </div>
+            <h2 class="taste-edit__headline taste-name">{{title}}</h2>
+            <button class="btn taste-edit__ok">
+                Ok
+            </button>
         </div>
     </template>
 

@@ -79,6 +79,10 @@ var loadFn = function () {
                 Array.from(detailButtons).forEach(function (btn) {
                     var detailHammer = new Hammer(btn);
                     detailHammer.on('tap', function(e) {
+                        var buttons = e.target.closest('.taste-edit-buttons').querySelectorAll('.detail-button selected');
+                        Array.from(buttons).forEach(function(element) {
+                            element.classList.remove('selected');
+                        });
                         e.target.classList.toggle('selected');
                     });
                 });

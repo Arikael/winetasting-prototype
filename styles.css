@@ -153,12 +153,18 @@ body {
     text-align: center;
 }
 
-.taste-title {
-    margin-top: 0.5rem;
+.taste-edit__headline {
+    font-size: 1.25rem;
+    margin: 0;
+    text-align: center;
 }
 
-.i-smell {
-    margin-bottom: 0.5rem;
+.taste-edit__headline.taste-title {
+    margin-top: 1rem;
+}
+
+.taste-edit__headline.i-smell {
+    margin-bottom: 1rem;
 }
 
 .taste-edit__back {
@@ -190,14 +196,8 @@ body {
     padding: 0 0.5rem;
 }
 
-.taste-edit__headline {
-    font-size: 1rem;
-    margin: 0;
-}
-
-.taste-edit__when .btn {
-    background: hsla(231, 48%, 58%, 1);
-    color: white;
+.detail-button.selected {
+    background: hsla(231, 48%, 34%, 1);
 }
 
 .btn.taste-edit__ok {
@@ -208,10 +208,17 @@ body {
     font-weight: bold;
 }
 
+.taste-separator {
+    text-align: center;
+    margin: 0.25rem 0;
+    color: #00000080;
+}
+
 ul.flat {
     margin:0;
     padding: 0;
     list-style-type: none;
+    text-align: center;
 }
 
 ul.flat li {
@@ -225,7 +232,7 @@ ul.flat li:last-child {
 }
 
 .btn {
-    background: hsla(231, 48%, 34%, 1);
+    background: hsla(231, 48%, 58%, 1);
     border-radius: 3px;
     padding: 10px 16px;
     border: none;

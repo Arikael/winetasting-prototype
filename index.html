@@ -17,7 +17,7 @@
     <div class="taste-notes">
         
     </div>
-    <div class="debug-information"></div>
+    <div class="debug-information" style="display: none;"></div>
     <template id="tastesTemplate">
         {{each(options.categories)}}
         <div class="taste-category {{@this.name}}" data-name="{{@this.name}}" data-icon="{{@this.icon}}">
@@ -81,7 +81,7 @@
         </div>
         <div class="taste-edit__details">
             <h2 class="taste-edit__headline i-smell">Ich schmecke</h2>
-            <div class="taste-edit__when">
+            <div class="taste-edit__when taste-edit-buttons">
                 <ul class="flat">
                     <li>
                         <button class="btn detail-button ">sofort</button>
@@ -94,7 +94,10 @@
                     </li>
                 </ul>
             </div>
-            <div class="taste-edit__howmuch">
+            <div class="taste-separator">
+                <i class="fas fa-arrow-down"></i>
+            </div>
+            <div class="taste-edit__howmuch taste-edit-buttons">
                 <ul class="flat">
                     <li>
                         <button class="btn detail-button">Spuren</button>
@@ -120,11 +123,7 @@
     <div id="taste-edit-dialog"></div>
 
     <script type="text/javascript">
-
-
         document.addEventListener("DOMContentLoaded", loadFn);
-
-
     </script>
 </body>
 

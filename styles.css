@@ -127,6 +127,7 @@ body {
 
 #taste-edit-dialog {
     display: none;
+    color: #000000a8;
 }
 
 #taste-edit-dialog.open {
@@ -137,6 +138,7 @@ body {
     top: 0;
     right: 0;
     bottom: 0;
+    width: 100vw;
 }
 
 .taste-edit__header {
@@ -151,7 +153,7 @@ body {
     text-align: center;
 }
 
-.taste-name {
+.taste-title {
     margin-top: 0.5rem;
 }
 
@@ -162,9 +164,11 @@ body {
 .taste-edit__back {
     position: absolute;
     top: 0.5rem;
+    right: 0;
     text-align: right;
     transform: translateX(-100%);
-    right: 0.5rem;
+    font-size: 1.25rem;
+    color: #00000080;
 }
 
 .title-icon {
@@ -189,10 +193,14 @@ body {
 .taste-edit__headline {
     font-size: 1rem;
     margin: 0;
-    margin-bottom: 0.25rem;
 }
 
-.tate-edit__ok {
+.taste-edit__when .btn {
+    background: hsla(231, 48%, 58%, 1);
+    color: white;
+}
+
+.btn.taste-edit__ok {
     margin-top: 2rem;
     width: 100%;
     background: #8BC34A;
@@ -207,7 +215,7 @@ ul.flat {
 }
 
 ul.flat li {
-    margin-bottom: 8px;
+    margin: 6px 0;
     display: inline-block;
     margin-right: 0.25rem;
 }
@@ -217,7 +225,7 @@ ul.flat li:last-child {
 }
 
 .btn {
-    background: #3F51B5;
+    background: hsla(231, 48%, 34%, 1);
     border-radius: 3px;
     padding: 10px 16px;
     border: none;

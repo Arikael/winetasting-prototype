@@ -13,6 +13,10 @@
 
 <body>
     <div id="taste-data"></div>
+    <h2>Notizen</h2>
+    <div class="taste-notes">
+        
+    </div>
     <div class="debug-information"></div>
     <template id="tastesTemplate">
         {{each(options.categories)}}
@@ -64,13 +68,13 @@
     <template id="taste-edit">
         <div class="taste-edit__header">
             <div class="taste-edit__back">
-                <i class="far fa-times"></i>
+                <i class="fas fa-times"></i>
             </div>
             <div class="taste-edit__title">
                 <div class="title-icon">
                     <object class="title-icon__svg" data="/icons/{{icon}}" type="image/svg+xml"></object>
                 </div>
-                <div clss="title-text">
+                <div style="display: none;" clss="title-text">
                     {{title}}
                 </div>
             </div>
@@ -80,35 +84,35 @@
             <div class="taste-edit__when">
                 <ul class="flat">
                     <li>
-                        <button class="btn">sofort</button>
+                        <button class="btn detail-button ">sofort</button>
                     </li>
                     <li>
-                        <button class="btn">mit etwas Luft</button>
+                        <button class="btn detail-button">mit etwas Luft</button>
                     </li>
                     <li>
-                        <button class="btn">nach einer Zeit</button>
+                        <button class="btn detail-button">nach einer Zeit</button>
                     </li>
                 </ul>
             </div>
             <div class="taste-edit__howmuch">
                 <ul class="flat">
                     <li>
-                        <button class="btn">Spuren</button>
+                        <button class="btn detail-button">Spuren</button>
                     </li>
                     <li>
-                        <button class="btn">etwas</button>
+                        <button class="btn detail-button">etwas</button>
                     </li>
                     <li>
-                        <button class="btn">viel</button>
+                        <button class="btn detail-button">viel</button>
                     </li>
                     <li>
-                        <button class="btn">zu viel</button>
+                        <button class="btn detail-button">zu viel</button>
                     </li>
                 </ul>
             </div>
-            <h2 class="taste-edit__headline taste-name">{{title}}</h2>
+            <h2 class="taste-edit__headline taste-title">{{title}}</h2>
             <button class="btn taste-edit__ok">
-                Ok
+                Fertig
             </button>
         </div>
     </template>

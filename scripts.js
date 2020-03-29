@@ -1,3 +1,5 @@
+var allSelectedTastes = [];
+
 var loadFn = function () {
     var allTastes = {};
     var pixelRatio = window.devicePixelRatio;
@@ -14,6 +16,11 @@ var loadFn = function () {
     var debugInfo = Sqrl.Render(template, debugInfoData);
     document.querySelector('.debug-information').innerHTML = debugInfo;
 
+    var singleTap = new Hammer.Tap({ event: 'singletap' });
+    var doubleTap = new Hammer.Tap({ event: 'doubletap', taps: 2 });
+    doubleTap.recognizeWith(singleTap);
+    singleTap.requireFailure([doubleTap]);
+
     var tasteRequest = new XMLHttpRequest();
     tasteRequest.open('GET', 'tastes.json');
     tasteRequest.responseType = 'json';
@@ -28,18 +35,17 @@ var loadFn = function () {
         var tasteButtons = document.querySelectorAll('.taste');
         Array.from(tasteButtons).forEach(function (element) {
             var hammer = new Hammer.Manager(element, {});
-            var singleTap = new Hammer.Tap({ event: 'singletap' });
-            var doubleTap = new Hammer.Tap({ event: 'doubletap', taps: 2 });
-
             hammer.add([doubleTap, singleTap]);
-            doubleTap.recognizeWith(singleTap);
-            singleTap.requireFailure([doubleTap]);
-
+            
             hammer.on('singletap', function (event) {
                 var currentTarget = findTaste(event.srcEvent);
 
                 if (currentTarget) {
                     currentTarget.classList.toggle('selected');
+                    var taste = new Taste();
+                    taste.title = currentTarget.innerText;
+                    taste.name = currentTarget.getAttribute('data-name');
+                    toggleTaste(taste);
                 }
             });
 
@@ -57,13 +63,42 @@ var loadFn = function () {
                 var taste = category.tastes.find(function (element) {
                     return element.name === tasteName;
                 });
-console.log(taste);
 
                 var tasteEditTemplate = document.querySelector('#taste-edit').innerHTML;
                 var tastes = Sqrl.Render(tasteEditTemplate, taste);
                 var dialog = document.querySelector('#taste-edit-dialog');
+                dialog.attributes['data-name'] = tasteName;
                 dialog.classList.add('open');
                 dialog.innerHTML = tastes;
+
+                document.querySelector('.taste-edit__back').addEventListener('click', function() {
+                    document.querySelector('#taste-edit-dialog').classList.remove('open');
+                });
+
+                var detailButtons = document.querySelectorAll('.detail-button');
+                Array.from(detailButtons).forEach(function (btn) {
+                    var detailHammer = new Hammer(btn);
+                    detailHammer.on('tap', function(e) {
+                        e.target.classList.toggle('selected');
+                    });
+                });
+
+                var okBtn = document.querySelector('.taste-edit__ok');
+                var okHammer = new Hammer(okBtn);
+                okHammer.on('tap', function(e) {
+                    handleTasteDetails();
+                });
+
+                var dialogHammer = new Hammer(tasteEditTemplate);
+                dialogHammer.on('swipeUp', function(e) {
+                    handleTasteDetails();
+                });
+
+
+
+                document.querySelector('.taste-edit__back').addEventListener('click', function() {
+                    closeDialog();
+                });
             })
         });
     }
@@ -79,6 +114,72 @@ console.log(taste);
     });
 };
 
+function closeDialog() {
+    document.querySelector('#taste-edit-dialog').classList.remove('open');
+}
+
+function handleTasteDetails() {
+
+    var smellTime = document.querySelector('.taste-edit__when .btn.selected');
+    var smellAmount = document.querySelector('.taste-edit__howmuch .btn.selected');
+
+    var taste = new Taste();
+    taste.name = document.querySelector('#taste-edit-dialog').getAttribute('data-name');
+    taste.title = document.querySelector('.taste-title').innerText;
+
+    if(smellTime) {
+        taste.smellTime = smellTime.innerText;
+    }
+
+    if(smellAmount) {
+        taste.smellAmount = smellAmount.innerText;
+    }
+
+    toggleTaste(taste);
+    closeDialog();
+}
+
+function getTasteDetails() {
+    var selectedButtons = document.querySelectorAll('.detail-button.selected');
+    Array.from(selectedButtons).forEach(function(btn) {
+
+    });
+}
+
+function toggleTaste(taste) {
+    var index = allSelectedTastes.findIndex(function(value) {
+        return value.name === taste.name;
+    });
+
+    if(index === -1) {
+        allSelectedTastes.push(taste);
+    }
+    else {
+        allSelectedTastes.splice(index, 1);
+    }
+
+    updateNotes();
+}
+
+function updateNotes() {
+    var allNotes = [];
+    allSelectedTastes.forEach(element => {
+        var singleNote = '';
+        if(element.smellTime) {
+            singleNote = element.smellTime + ' ';
+        }
+
+        if(element.smellAmount) {
+            singleNote += element.smellAmount + ' ';
+        }
+
+        singleNote += element.title;
+        allNotes.push(singleNote);
+    });
+
+    document.querySelector('.taste-notes').innerText = allNotes.join(', ');
+}
+
 function findTaste(srcEvent) {
     var currentElement = srcEvent.target;
 
@@ -88,4 +189,11 @@ function findTaste(srcEvent) {
     }
 
     return currentElement;
+}
+
+class Taste {
+    name = '';
+    title = '';
+    smellAmount = '';
+    smellTime = '';
 }

@@ -41,7 +41,6 @@ var loadFn = function () {
                 var currentTarget = findTaste(event.srcEvent);
 
                 if (currentTarget) {
-                    currentTarget.classList.toggle('selected');
                     var taste = new Taste();
                     taste.title = currentTarget.innerText;
                     taste.name = currentTarget.getAttribute('data-name');
@@ -67,12 +66,12 @@ var loadFn = function () {
                 var tasteEditTemplate = document.querySelector('#taste-edit').innerHTML;
                 var tastes = Sqrl.Render(tasteEditTemplate, taste);
                 var dialog = document.querySelector('#taste-edit-dialog');
-                dialog.attributes['data-name'] = tasteName;
+                dialog.setAttribute('data-name', tasteName);
                 dialog.classList.add('open');
                 dialog.innerHTML = tastes;
 
                 document.querySelector('.taste-edit__back').addEventListener('click', function() {
-                    document.querySelector('#taste-edit-dialog').classList.remove('open');
+                    closeDialog();
                 });
 
                 var detailButtons = document.querySelectorAll('.detail-button');
@@ -93,15 +92,10 @@ var loadFn = function () {
                     handleTasteDetails();
                 });
 
-                var dialogHammer = new Hammer(tasteEditTemplate);
+                var dialogContainer = document.querySelector('.taste-edit-container');
+                var dialogHammer = new Hammer(dialogContainer);
                 dialogHammer.on('swipeUp', function(e) {
                     handleTasteDetails();
-                });
-
-
-
-                document.querySelector('.taste-edit__back').addEventListener('click', function() {
-                    closeDialog();
                 });
             })
         });
@@ -123,7 +117,6 @@ function closeDialog() {
 }
 
 function handleTasteDetails() {
-
     var smellTime = document.querySelector('.taste-edit__when .btn.selected');
     var smellAmount = document.querySelector('.taste-edit__howmuch .btn.selected');
 
@@ -162,6 +155,7 @@ function toggleTaste(taste) {
         allSelectedTastes.splice(index, 1);
     }
 
+    document.querySelector('.' + taste.name).classList.toggle('selected');
     updateNotes();
 }
 

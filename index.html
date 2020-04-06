@@ -13,9 +13,9 @@
 
 <body>
     <div id="taste-data"></div>
-    <h2>Notizen</h2>
-    <div class="taste-notes">
-        
+    <h2 class="default-margin notes-title">Notizen</h2>
+    <div class="taste-notes default-margin">
+
     </div>
     <div class="debug-information" style="display: none;"></div>
     <template id="tastesTemplate">
@@ -66,57 +66,59 @@
     </template>
 
     <template id="taste-edit">
-        <div class="taste-edit__header">
-            <div class="taste-edit__back">
-                <i class="fas fa-times"></i>
-            </div>
-            <div class="taste-edit__title">
-                <div class="title-icon">
-                    <object class="title-icon__svg" data="/icons/{{icon}}" type="image/svg+xml"></object>
+        <div class="taste-edit-container">
+            <div class="taste-edit__header">
+                <div class="taste-edit__back">
+                    <i class="fas fa-times"></i>
                 </div>
-                <div style="display: none;" clss="title-text">
-                    {{title}}
+                <div class="taste-edit__title">
+                    <div class="title-icon">
+                        <object class="title-icon__svg" data="/icons/{{icon}}" type="image/svg+xml"></object>
+                    </div>
+                    <div style="display: none;" clss="title-text">
+                        {{title}}
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="taste-edit__details">
-            <h2 class="taste-edit__headline i-smell">Ich schmecke</h2>
-            <div class="taste-edit__when taste-edit-buttons">
-                <ul class="flat">
-                    <li>
-                        <button class="btn detail-button ">sofort</button>
-                    </li>
-                    <li>
-                        <button class="btn detail-button">mit etwas Luft</button>
-                    </li>
-                    <li>
-                        <button class="btn detail-button">nach einer Zeit</button>
-                    </li>
-                </ul>
+            <div class="taste-edit__details">
+                <h2 class="taste-edit__headline i-smell">Ich schmecke</h2>
+                <div class="taste-edit__when taste-edit-buttons">
+                    <ul class="flat">
+                        <li>
+                            <button class="btn detail-button ">sofort</button>
+                        </li>
+                        <li>
+                            <button class="btn detail-button">mit etwas Luft</button>
+                        </li>
+                        <li>
+                            <button class="btn detail-button">nach einer Zeit</button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="taste-separator">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
+                <div class="taste-edit__howmuch taste-edit-buttons">
+                    <ul class="flat">
+                        <li>
+                            <button class="btn detail-button">Spuren</button>
+                        </li>
+                        <li>
+                            <button class="btn detail-button">etwas</button>
+                        </li>
+                        <li>
+                            <button class="btn detail-button">viel</button>
+                        </li>
+                        <li>
+                            <button class="btn detail-button">zu viel</button>
+                        </li>
+                    </ul>
+                </div>
+                <h2 class="taste-edit__headline taste-title">{{title}}</h2>
+                <button class="btn taste-edit__ok">
+                    Fertig
+                </button>
             </div>
-            <div class="taste-separator">
-                <i class="fas fa-arrow-down"></i>
-            </div>
-            <div class="taste-edit__howmuch taste-edit-buttons">
-                <ul class="flat">
-                    <li>
-                        <button class="btn detail-button">Spuren</button>
-                    </li>
-                    <li>
-                        <button class="btn detail-button">etwas</button>
-                    </li>
-                    <li>
-                        <button class="btn detail-button">viel</button>
-                    </li>
-                    <li>
-                        <button class="btn detail-button">zu viel</button>
-                    </li>
-                </ul>
-            </div>
-            <h2 class="taste-edit__headline taste-title">{{title}}</h2>
-            <button class="btn taste-edit__ok">
-                Fertig
-            </button>
         </div>
     </template>
 

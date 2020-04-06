@@ -190,8 +190,10 @@ function findTaste(srcEvent) {
 }
 
 class Taste {
-    name = '';
-    title = '';
-    smellAmount = '';
-    smellTime = '';
+    constructor() {
+        this.name = '';
+        this.title = '';
+        this.smellAmount = '';
+        this.smellTime = '';
+    }
 }

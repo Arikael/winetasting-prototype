@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { WineApiService } from 'src/app/api/wine-api.service';
+import { Observable } from 'rxjs';
+import { WineListItem } from '../wine-list-item';
 
 @Component({
   selector: 'app-wine-list',
@@ -7,8 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WineListComponent implements OnInit {
 
-  constructor() { }
+  get wines(): Observable<WineListItem[]> {
+    return this.wineApiService.getWines();
+  }
 
-  ngOnInit() {}
+  constructor(public wineApiService: WineApiService) { }
+
+  ngOnInit() {
+
+  }
 
 }

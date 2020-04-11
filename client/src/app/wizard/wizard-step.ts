@@ -1,4 +1,4 @@
-export class WineWizardStep {
+export class WizardStep {
     icon: string;
     link: string;
     id: string;

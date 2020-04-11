@@ -1,25 +1,25 @@
 import { Observable, of, Subject } from 'rxjs';
-import { WineWizardStep } from './wine-wizard-step';
+import { WizardStep } from './wizard-step';
 
-export class WineWizardService {
-    private steps: WineWizardStep[];
+export class WizardService {
+    private steps: WizardStep[];
     // tslint:disable-next-line:variable-name
-    private _currentStep: WineWizardStep;
-    private stepChange$: Subject<WineWizardStep> = new Subject<WineWizardStep>();
+    private _currentStep: WizardStep;
+    private stepChange$: Subject<WizardStep> = new Subject<WizardStep>();
 
-    get currentStep(): WineWizardStep {
+    get currentStep(): WizardStep {
         return this._currentStep;
     }
 
-    get allSteps(): WineWizardStep[] {
+    get allSteps(): WizardStep[] {
         return this.steps.slice(0);
     }
 
-    onStepChanged(): Observable<WineWizardStep> {
-        return of(null);
+    get onStepChanged(): Observable<WizardStep> {
+        return this.stepChange$;
     }
 
-    addSteps(steps: WineWizardStep | WineWizardStep[]) {
+    addSteps(steps: WizardStep | WizardStep[]) {
         const stepsAsArray = Array.isArray(steps)
             ? steps
             : [steps];
@@ -28,15 +28,16 @@ export class WineWizardService {
         this.steps.push(...stepsToAdd);
     }
 
-    createSteps(steps: WineWizardStep[]) {
+    createSteps(steps: WizardStep[]) {
         // always create new steps, so they can't be mutated from outside
         this.steps = [];
         this.addSteps(steps);
         this.setStep(this.steps[0]);
     }
 
-    setStep(step: WineWizardStep | string): boolean {
+    setStep(step: WizardStep | string): boolean {
         let id: string = null;
+
         if (typeof step === 'string') {
             id = step;
         } else {
@@ -44,9 +45,12 @@ export class WineWizardService {
         }
 
         const foundStep = this.findStep(id);
+        const stepsAreIdentical = foundStep && this._currentStep && this._currentStep.id === foundStep.id;
 
-        if (foundStep) {
+        // needs proper test
+        if (foundStep && !stepsAreIdentical) {
             this._currentStep = foundStep;
+            this.stepChange$.next(this._currentStep);
 
             return true;
         }
@@ -54,7 +58,7 @@ export class WineWizardService {
         return false;
     }
 
-    forward(): WineWizardStep {
+    forward(): WizardStep {
         const currentIndex = this.findCurrentStepIndex();
 
         if (currentIndex < this.steps.length - 1) {
@@ -64,7 +68,7 @@ export class WineWizardService {
         return this._currentStep;
     }
 
-    back(): WineWizardStep {
+    back(): WizardStep {
         const currentIndex = this.findCurrentStepIndex();
 
         if (currentIndex > 0) {
@@ -74,7 +78,7 @@ export class WineWizardService {
         return this._currentStep;
     }
 
-    private findStep(id: string): WineWizardStep {
+    private findStep(id: string): WizardStep {
         const step = this.steps.find((item) => item.id === id);
 
         return step;

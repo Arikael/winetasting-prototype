@@ -1,13 +1,13 @@
-import { WineWizardService } from './wine-wizard.service';
-import { WineWizardStep } from './wine-wizard-step';
-import { connectorSeviceFactory } from 'src/app/factories/factories';
+import { WizardService } from './wizard.service';
+import { WizardStep } from './wizard-step';
+import { async } from '@angular/core/testing';
 
-describe('WineWizard Service', () => {
-    let service: WineWizardService;
-    let steps: WineWizardStep[];
+describe('Wizard Service', () => {
+    let service: WizardService;
+    let steps: WizardStep[];
 
     beforeEach(() => {
-        service = new WineWizardService();
+        service = new WizardService();
         steps = [{
             id: '1',
             icon: 'myicon',
@@ -88,8 +88,8 @@ describe('WineWizard Service', () => {
 
     it('going back on first step stays on first step', () => {
         service.createSteps(steps);
-        service.back();
-
+        const newStep = service.back();
+        expect(newStep.id).toEqual(steps[0].id);
     });
 
     it('setting a step sets the current step', () => {
@@ -115,9 +115,23 @@ describe('WineWizard Service', () => {
         expect(service.currentStep.id).toEqual(currentStepId);
     });
 
-    it('setting a step emits the onStepChange event', () => {
+    it('setting a step emits the onStepChange event', async(() => {
+        service.createSteps(steps);
+        service.onStepChanged.subscribe((step: WizardStep) => {
+            expect(step).toBeDefined();
+        });
 
-    });
+        service.setStep('2');
+    }));
+
+    /*xit('setting a step doesnt emit onStepChange event if step has not changed', marbles(m => {
+        service.createSteps(steps);
+        const subscription = service.onStepChanged.subscribe();
+        const expected = m.cold('-^-!');
+        service.setStep('2');
+        m.expect(subscription).toBeObservable(expected);
+        subscription.unsubscribe();
+    }));*/
 
     it('creating steps resets the current step', () => {
         service.createSteps(steps);
@@ -127,7 +141,7 @@ describe('WineWizard Service', () => {
     });
 
 
-    function createNewStep(): WineWizardStep {
+    function createNewStep(): WizardStep {
         return {
             id: (steps.length + 1).toString(),
             icon: 'icon',

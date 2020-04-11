@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { AddWineComponent } from './add-wine/add-wine.component';
 import { WineRoutingModule } from './wine-routing.module';
 import { IonicModule } from '@ionic/angular';
+import { BaseDataComponent } from './base-data/base-data.component';
 
 @NgModule({
   declarations: [
-    AddWineComponent
+    AddWineComponent,
+    BaseDataComponent
   ],
   imports: [
     IonicModule,

@@ -8,6 +8,8 @@
   <app-wine-list-item *ngFor="let wine of wineApiService.getWines() | async" [item]="wine"></app-wine-list-item>
 </ion-list>
 <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-  <ion-fab-button href="wine/add"></ion-fab-button>
+  <ion-fab-button href="wine/add">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
 </ion-fab>
 </ion-content>

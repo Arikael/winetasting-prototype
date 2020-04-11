@@ -1,0 +1,13 @@
+<ion-toolbar color="primary">
+  <ion-buttons slot="start">
+    <ion-icon name="chevron-back-outline" size="large" slot="start" (click)="back()"></ion-icon>
+  </ion-buttons>
+  <ion-buttons>
+    <ion-button *ngFor="let step of wizardSteps" [routerLink]="step.link">
+      <ion-icon [name]="step.icon" size="large"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-buttons slot="end">
+    <ion-icon name="chevron-forward-outline" (click)="forward()" size="large" slot="end"></ion-icon>
+  </ion-buttons>
+</ion-toolbar>

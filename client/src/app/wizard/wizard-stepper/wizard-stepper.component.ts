@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { WizardService } from '../wizard.service';
+import { WizardStep } from '../wizard-step';
 
 @Component({
   selector: 'app-wizard-stepper',
@@ -6,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./wizard-stepper.component.scss'],
 })
 export class WizardStepperComponent implements OnInit {
+  constructor(private wizardService: WizardService) { }
 
-  constructor() { }
+  get wizardSteps(): WizardStep[] {
+    return this.wizardService.allSteps;
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
 
+  }
+
+  forward() {
+    this.wizardService.forward();
+  }
+
+  back() {
+    this.wizardService.back();
+  }
 }

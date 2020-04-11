@@ -6,6 +6,7 @@ export class WizardService {
     // tslint:disable-next-line:variable-name
     private _currentStep: WizardStep;
     private stepChange$: Subject<WizardStep> = new Subject<WizardStep>();
+    private stepsModified$: Subject<WizardStep[]> = new Subject<WizardStep[]>();
 
     get currentStep(): WizardStep {
         return this._currentStep;
@@ -17,6 +18,12 @@ export class WizardService {
 
     get onStepChanged(): Observable<WizardStep> {
         return this.stepChange$;
+    }
+
+    isStepCurrent(step: WizardStep | string): boolean {
+        const id = typeof step === 'string' ? step : step.id;
+
+        return id === this._currentStep.id;
     }
 
     addSteps(steps: WizardStep | WizardStep[]) {
@@ -32,10 +39,10 @@ export class WizardService {
         // always create new steps, so they can't be mutated from outside
         this.steps = [];
         this.addSteps(steps);
-        this.setStep(this.steps[0]);
+        this.setCurrentStep(this.steps[0]);
     }
 
-    setStep(step: WizardStep | string): boolean {
+    setCurrentStep(step: WizardStep | string): boolean {
         let id: string = null;
 
         if (typeof step === 'string') {
@@ -62,7 +69,7 @@ export class WizardService {
         const currentIndex = this.findCurrentStepIndex();
 
         if (currentIndex < this.steps.length - 1) {
-            this.setStep(this.steps[currentIndex + 1]);
+            this.setCurrentStep(this.steps[currentIndex + 1]);
         }
 
         return this._currentStep;
@@ -72,7 +79,7 @@ export class WizardService {
         const currentIndex = this.findCurrentStepIndex();
 
         if (currentIndex > 0) {
-            this.setStep(this.steps[currentIndex - 1]);
+            this.setCurrentStep(this.steps[currentIndex - 1]);
         }
 
         return this._currentStep;

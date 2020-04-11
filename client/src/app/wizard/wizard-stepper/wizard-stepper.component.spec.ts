@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { WizardStepperComponent } from './wizard-stepper.component';
+import { WizardService } from '../wizard.service';
 
 describe('WizardStepperComponent', () => {
   let component: WizardStepperComponent;
@@ -10,7 +11,10 @@ describe('WizardStepperComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ WizardStepperComponent ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot()],
+      providers: [
+        WizardService
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(WizardStepperComponent);

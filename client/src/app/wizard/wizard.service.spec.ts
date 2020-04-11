@@ -74,14 +74,14 @@ describe('Wizard Service', () => {
 
     it('going forward if on last step stays on last step', () => {
         service.createSteps(steps);
-        service.setStep(steps[steps.length - 1]);
+        service.setCurrentStep(steps[steps.length - 1]);
         const newStep = service.forward();
         expect(newStep.id).toEqual(steps[steps.length - 1].id);
     });
 
     it('going back sets the previous step', () => {
         service.createSteps(steps);
-        service.setStep(steps[1]);
+        service.setCurrentStep(steps[1]);
         const newStep = service.back();
         expect(newStep.id).toEqual(steps[0].id);
     });
@@ -94,24 +94,24 @@ describe('Wizard Service', () => {
 
     it('setting a step sets the current step', () => {
         service.createSteps(steps);
-        service.setStep(steps[1]);
+        service.setCurrentStep(steps[1]);
         expect(service.currentStep.id).toEqual(steps[1].id);
     });
 
     it('setting a known step returns true', () => {
         service.createSteps(steps);
-        expect(service.setStep(steps[1])).toBeTruthy();
+        expect(service.setCurrentStep(steps[1])).toBeTruthy();
     });
 
     it('setting an unknown step returns false', () => {
         service.createSteps(steps);
-        expect(service.setStep('unknown')).toBeFalsy();
+        expect(service.setCurrentStep('unknown')).toBeFalsy();
     });
 
     it('setting an unknown step doesnt set the current step', () => {
         service.createSteps(steps);
         const currentStepId = service.currentStep.id;
-        service.setStep('unkown');
+        service.setCurrentStep('unkown');
         expect(service.currentStep.id).toEqual(currentStepId);
     });
 
@@ -121,7 +121,7 @@ describe('Wizard Service', () => {
             expect(step).toBeDefined();
         });
 
-        service.setStep('2');
+        service.setCurrentStep('2');
     }));
 
     /*xit('setting a step doesnt emit onStepChange event if step has not changed', marbles(m => {
@@ -140,6 +140,40 @@ describe('Wizard Service', () => {
         expect(service.allSteps.length).toEqual(steps.length);
     });
 
+    it('adding steps emits ', () => {
+        service.createSteps(steps);
+        service.addSteps(createNewStep());
+        service.createSteps(steps);
+        expect(service.allSteps.length).toEqual(steps.length);
+    });
+
+    it('identical string id returns true on isStepCurent', () => {
+        service.createSteps(steps);
+        expect(service.isStepCurrent('1')).toBeTruthy();
+    });
+
+    it('different string id returns true on isStepCurent', () => {
+        service.createSteps(steps);
+        expect(service.isStepCurrent('2')).toBeFalsy();
+    });
+
+    it('identical step returns true on isStepCurent', () => {
+        service.createSteps(steps);
+        expect(service.isStepCurrent( {
+            id: '1',
+            icon: '',
+            link: ''
+        })).toBeTruthy();
+    });
+
+    it('different step returns false on isStepCurent', () => {
+        service.createSteps(steps);
+        expect(service.isStepCurrent( {
+            id: '2',
+            icon: '',
+            link: ''
+        })).toBeFalsy();
+    });
 
     function createNewStep(): WizardStep {
         return {

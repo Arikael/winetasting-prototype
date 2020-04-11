@@ -1,5 +1,5 @@
 import { Routes, PreloadAllModules, RouterModule } from '@angular/router';
-import { AddWineComponent } from './edit-wine/add-wine.component';
+import { AddWineComponent } from './add-wine/add-wine.component';
 import { NgModule } from '@angular/core';
 
 const routes: Routes = [

@@ -1,7 +1,7 @@
 {
   "name": "client",
   "version": "0.0.1",
-  "author": "Ionic Framework",
+  "author": "Michael Häberle",
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",

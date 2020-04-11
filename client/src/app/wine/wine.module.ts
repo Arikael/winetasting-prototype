@@ -5,12 +5,16 @@ import { WineRoutingModule } from './wine-routing.module';
 import { IonicModule } from '@ionic/angular';
 import { BaseDataComponent } from './base-data/base-data.component';
 import { WizardStepperComponent } from '../wizard/wizard-stepper/wizard-stepper.component';
+import { TastesComponent } from './tastes/tastes.component';
+import { SummaryComponent } from './summary/summary.component';
 
 @NgModule({
   declarations: [
     AddWineComponent,
     BaseDataComponent,
-    WizardStepperComponent
+    WizardStepperComponent,
+    TastesComponent,
+    SummaryComponent
   ],
   imports: [
     IonicModule,

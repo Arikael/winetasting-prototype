@@ -16,22 +16,22 @@ export class AddWineComponent implements OnInit {
       {
         id: 'base',
         icon: 'document-outline',
-        link: 'add/base'
+        link: '/wine/add/base'
       },
       {
         id: 'nose',
         icon: 'nutrition-outline',
-        link: 'add/nose'
+        link: '/wine/add/smell'
       },
       {
         id: 'mouth',
         icon: 'restaurant-outline',
-        link: 'add/mouth'
+        link: '/wine/add/taste'
       },
       {
         id: 'rating',
         icon: 'star-half',
-        link: 'add/rating'
+        link: '/wine/add/summary'
       }
     ]);
   }

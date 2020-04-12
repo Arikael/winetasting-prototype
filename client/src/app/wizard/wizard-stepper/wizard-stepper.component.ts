@@ -18,11 +18,15 @@ export class WizardStepperComponent implements OnInit {
 
   }
 
+  setStep(step: WizardStep) {
+    this.wizardService.setCurrentStep(step).subscribe();
+  }
+
   forward() {
-    this.wizardService.forward();
+    this.wizardService.forward().subscribe();
   }
 
   back() {
-    this.wizardService.back();
+    this.wizardService.back().subscribe();
   }
 }

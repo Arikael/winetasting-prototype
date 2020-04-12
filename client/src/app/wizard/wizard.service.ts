@@ -3,7 +3,11 @@ import { tap, filter, map, mergeMap, catchError, distinctUntilChanged, take } fr
 import { WizardStep } from './wizard-step';
 import { Router } from '@angular/router';
 import { WizardStepResult } from './wizard-step-result';
+import { Injectable } from '@angular/core';
 
+@Injectable({
+    providedIn: 'root'
+})
 export class WizardService {
     private steps: WizardStep[];
     // tslint:disable-next-line:variable-name

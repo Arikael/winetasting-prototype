@@ -1,4 +1,9 @@
 <ion-list>
+  <ion-item-group>
+    <ion-item-divider>
+      <ion-label>Basic Information</ion-label>
+    </ion-item-divider>
+  </ion-item-group>
   <ion-item>
     <ion-label position="stacked">Name</ion-label>
     <ion-input></ion-input>
@@ -15,4 +20,5 @@
     <ion-label position="stacked">Tasted on</ion-label>
     <ion-datetime [value]="undefined" displayFormat="DD.MM.YYYY"></ion-datetime>
   </ion-item>
+  <app-grapes-selection></app-grapes-selection>
 </ion-list>

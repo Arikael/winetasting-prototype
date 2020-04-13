@@ -1,4 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
+import { GrapeApiService } from 'src/app/api/grape-api.service';
+import { Grape } from 'src/app/api/grape';
+
+export class GrapeSelectionView {
+  name = '';
+  title = '';
+  isFavorite = false;
+  type: 'red' | 'white';
+}
 
 @Component({
   selector: 'app-grapes-selection',
@@ -7,8 +18,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GrapesSelectionComponent implements OnInit {
 
-  constructor() { }
+  private allGrapes: Observable<GrapeSelectionView>;
 
-  ngOnInit() {}
+  constructor(private grapeApiService: GrapeApiService) { }
+
+
+  get favoriteGrapes(): Observable<Grape[]> {
+    return this.grapeApiService.getAllGrapes().pipe(
+      map((item) => item.filter(arrItem => arrItem.isFavorite))
+    );
+  }
+
+  get redGrapes(): Observable<Grape[]> {
+    return this.grapeApiService.getAllGrapes().pipe(
+      map((item) => item.filter(arrItem => arrItem.type === 'red'))
+    );
+  }
+
+  get whiteGrapes(): Observable<Grape[]> {
+    return this.grapeApiService.getAllGrapes().pipe(
+      map((item) => item.filter(arrItem => arrItem.type === 'white'))
+    );
+  }
+
+  ngOnInit() {
+
+  }
 
 }

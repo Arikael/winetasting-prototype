@@ -1,3 +1,24 @@
+<ion-item-group>
+  <ion-item-divider>
+    <ion-label>Grapes<br />Add a Favorite and/or from the lists below</ion-label>
+  </ion-item-divider>
+</ion-item-group>
 <ion-item>
-  <ion-label>Grapes</ion-label>
+  <ion-label position="stacked">Favorites</ion-label>
+  <p>
+    <ion-button size="small" color="secondary" *ngFor="let favorite of favoriteGrapes | async">{{favorite.name}}</ion-button>
+  </p>
+</ion-item>
+<ion-item>
+  <ion-label position="stacked">Red Grapes</ion-label>
+  <ion-select multiple="true" name="red" placeholder="no red grapes">
+    <ion-select-option *ngFor="let redGrape of redGrapes | async">{{redGrape.name}}</ion-select-option>
+  </ion-select>
+</ion-item>
+<ion-item>
+  <ion-label position="stacked">White Grapes</ion-label>
+  <ion-select multiple="true" name="white" placeholder="no white grapes">
+    <ion-select-option *ngFor="let whiteGrape of whiteGrapes | async">{{whiteGrape.name}}</ion-select-option>
+
+  </ion-select>
 </ion-item>

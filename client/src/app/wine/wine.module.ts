@@ -7,6 +7,7 @@ import { BaseDataComponent } from './base-data/base-data.component';
 import { WizardStepperComponent } from '../wizard/wizard-stepper/wizard-stepper.component';
 import { TastesComponent } from './tastes/tastes.component';
 import { SummaryComponent } from './summary/summary.component';
+import { GrapesSelectionComponent } from './grapes-selection/grapes-selection.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { SummaryComponent } from './summary/summary.component';
     BaseDataComponent,
     WizardStepperComponent,
     TastesComponent,
-    SummaryComponent
+    SummaryComponent,
+    GrapesSelectionComponent
   ],
   imports: [
     IonicModule,

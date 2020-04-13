@@ -2,9 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { WizardService } from './wizard.service';
 import { WizardStep } from './wizard-step';
 import { Router } from '@angular/router';
-import { url } from 'inspector';
 
-fdescribe('Wizard Service', () => {
+describe('Wizard Service', () => {
     let service: WizardService;
     let steps: WizardStep[];
     const routerMock = {

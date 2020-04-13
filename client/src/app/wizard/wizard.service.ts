@@ -10,42 +10,16 @@ import { Injectable } from '@angular/core';
 })
 export class WizardService {
     private steps: WizardStep[];
-    // tslint:disable-next-line:variable-name
-    private _currentStepSubject$: BehaviorSubject<WizardStep> = new BehaviorSubject<WizardStep>(new WizardStep());
-
-    constructor(private router: Router) {
-    }
-
-    get currentStep(): Observable<WizardStep> {
-        return this._currentStepSubject$;
-    }
 
     get allSteps(): WizardStep[] {
         return this.steps.slice(0);
     }
 
-    isStepCurrent(step: WizardStep | string): Observable<boolean> {
-        const id = typeof step === 'string' ? step : step.id;
-
-        return this.currentStep.pipe(
-            take(1),
-            map((cStep: WizardStep) => {
-                if (!cStep) {
-                    return false;
-                }
-
-                return id === cStep.id;
-            })
-        );
+    get currentStep(): WizardStep {
+        return this.getCurrentStep();
     }
 
-    addSteps(steps: WizardStep | WizardStep[]) {
-        const stepsAsArray = Array.isArray(steps)
-            ? steps
-            : [steps];
-
-        const stepsToAdd = stepsAsArray.map(item => Object.assign({}, item));
-        this.steps.push(...stepsToAdd);
+    constructor(private router: Router) {
     }
 
     createSteps(steps: WizardStep[]) {
@@ -54,109 +28,84 @@ export class WizardService {
         this.addSteps(steps);
     }
 
-    createStepsAndSetCurrentStep(steps: WizardStep[], currentStep: WizardStep | string): Observable<WizardStepResult> {
+    /*createStepsAndSetCurrentStep(steps: WizardStep[], currentStep: WizardStep) {
         this.createSteps(steps);
-        return this.setCurrentStep(currentStep);
-    }
+        this.setCurrentStep(currentStep);
+    }*/
 
-    setCurrentStep(step: WizardStep | string): Observable<WizardStepResult> {
-        let id: string = null;
+    setCurrentStep(step: WizardStep | string) {
+        this.throwIfNoStepsHaveBeenSet();
+        const link = this.getLinkFromStep(step);
 
-        if (typeof step === 'string') {
-            id = step;
-        } else {
-            id = step.id;
+        if (!this.stepExists(link)) {
+            throw Error(`step ${link} doesnt exist`);
         }
 
-        const foundStep = this.findStep(id);
-        const stepFound$ = defer(() => this.router.navigateByUrl(foundStep.link)
-            .then(response => response)
-            .catch((error: any) => {
-                console.error(error);
-
-                return false;
-            })).pipe(
-                map((result: boolean) => {
-                    return {
-                        result,
-                        step: foundStep
-                    };
-                }),
-                tap((result: WizardStepResult) => {
-                    if (result.result) {
-                        this._currentStepSubject$.next(foundStep);
-                    }
-                })
-            );
-
-        const stepNotFound$ = of({
-            result: false,
-            step: foundStep ? foundStep : null
-        });
-
-        return this.currentStep.pipe(
-            take(1),
-            mergeMap((cStep: WizardStep) => {
-                return iif(() => foundStep && (cStep && cStep.id !== foundStep.id || !cStep),
-                    stepFound$,
-                    stepNotFound$.pipe(map((notFound: WizardStepResult) => {
-                        if (!notFound.step) {
-                            notFound.step = cStep;
-                        }
-
-                        return notFound;
-                    }))
-                );
-            })
-        );
+        if (!this.isStepCurrent(step)) {
+            this.router.navigateByUrl(link);
+        }
     }
 
-    forward(): Observable<WizardStepResult> {
-        return this.moveStep('forward');
+    forward() {
+        this.throwIfNoStepsHaveBeenSet();
+        const currentIndex = this.getIndexOfCurrentStep();
+
+        if (currentIndex < this.allSteps.length - 1) {
+            this.setCurrentStep(this.allSteps[currentIndex + 1]);
+        }
     }
 
-    back(): Observable<WizardStepResult> {
-        return this.moveStep('back');
+    back() {
+        this.throwIfNoStepsHaveBeenSet();
+        const currentIndex = this.getIndexOfCurrentStep();
+
+        if (currentIndex > 0) {
+            this.setCurrentStep(this.allSteps[currentIndex - 1].link);
+        }
     }
 
-    private moveStep(direction: 'forward' | 'back'): Observable<WizardStepResult> {
-        return this.findCurrentStepIndex().pipe(
-            mergeMap((currentIndex: number) => {
-                const forwardValid = direction === 'forward' && currentIndex < this.steps.length - 1 && currentIndex > -1;
-                const backValid = direction === 'back' && currentIndex > 0;
-                const indexChange = direction === 'forward' ? 1 : -1;
+    isStepCurrent(step: WizardStep | string): boolean {
+        this.throwIfNoStepsHaveBeenSet();
+        const link = this.getLinkFromStep(step);
 
-                if (forwardValid || backValid) {
-                    return this.setCurrentStep(this.steps[currentIndex + indexChange]);
-                } else if (currentIndex === -1) {
-                    return this.setCurrentStep(this.steps[0]);
-                }
-
-                return this.currentStep.pipe(
-                    take(1),
-                    map((step: WizardStep) => {
-                        return {
-                            result: false,
-                            step
-                        };
-                    })
-                );
-            })
-        );
+        return this.isLinkCurrent(link);
     }
 
-    private findStep(id: string): WizardStep {
-        const step = this.steps.find((item) => item.id === id);
-
-        return step;
+    isLinkCurrent(link: string): boolean {
+        this.throwIfNoStepsHaveBeenSet();
+        return this.router.url.endsWith(link);
     }
 
-    private findCurrentStepIndex(): Observable<number> {
-        return this.currentStep.pipe(
-            take(1),
-            map((step: WizardStep) => {
-                return step ? this.steps.findIndex((item) => item.id === step.id) : -1;
-            })
-        );
+    private addSteps(steps: WizardStep | WizardStep[]) {
+        const stepsAsArray = Array.isArray(steps)
+            ? steps
+            : [steps];
+
+        const stepsToAdd = stepsAsArray.map(item => Object.assign({}, item));
+        this.steps.push(...stepsToAdd);
+    }
+
+    private getLinkFromStep(step: WizardStep | string): string {
+        return typeof step === 'string' ? step : step.link;
+    }
+
+    private getCurrentStep(): WizardStep {
+        return this.allSteps.find((item) => this.isLinkCurrent(item.link));
+    }
+
+    private getIndexOfCurrentStep() {
+        return this.allSteps.findIndex((item) => this.isLinkCurrent(item.link));
+    }
+
+    private stepExists(step: WizardStep | string): boolean {
+        const link = this.getLinkFromStep(step);
+
+        return this.allSteps.findIndex((item) => item.link === link) > -1;
+    }
+
+    private throwIfNoStepsHaveBeenSet() {
+        if (!this.allSteps || this.allSteps.length === 0) {
+            throw Error('WizardService: createSteps before navigating');
+        }
     }
 }

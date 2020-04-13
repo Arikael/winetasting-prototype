@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { WizardService } from '../wizard.service';
 import { WizardStep } from '../wizard-step';
+import { ActivatedRoute, Router } from '@angular/router';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-wizard-stepper',
@@ -8,7 +10,7 @@ import { WizardStep } from '../wizard-step';
   styleUrls: ['./wizard-stepper.component.scss'],
 })
 export class WizardStepperComponent implements OnInit {
-  constructor(private wizardService: WizardService) { }
+  constructor(private router: Router, private wizardService: WizardService) { }
 
   get wizardSteps(): WizardStep[] {
     return this.wizardService.allSteps;
@@ -19,14 +21,14 @@ export class WizardStepperComponent implements OnInit {
   }
 
   setStep(step: WizardStep) {
-    this.wizardService.setCurrentStep(step).subscribe();
+    this.wizardService.setCurrentStep(step);
   }
 
   forward() {
-    this.wizardService.forward().subscribe();
+    this.wizardService.forward();
   }
 
   back() {
-    this.wizardService.back().subscribe();
+    this.wizardService.back();
   }
 }

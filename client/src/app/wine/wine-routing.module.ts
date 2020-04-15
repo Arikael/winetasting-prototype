@@ -2,7 +2,7 @@ import { Routes, PreloadAllModules, RouterModule } from '@angular/router';
 import { AddWineComponent } from './add-wine/add-wine.component';
 import { NgModule } from '@angular/core';
 import { BaseDataComponent } from './base-data/base-data.component';
-import { TastesComponent } from './tastes/tastes.component';
+import { TastesComponent } from './shared/tastes/tastes.component';
 import { SummaryComponent } from './summary/summary.component';
 
 const routes: Routes = [

@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { TasteEditDetailComponent } from './taste-edit-detail.component';
+import { NoseComponent } from './nose.component';
 
-describe('TasteEditDetailComponent', () => {
-  let component: TasteEditDetailComponent;
-  let fixture: ComponentFixture<TasteEditDetailComponent>;
+describe('NoseComponent', () => {
+  let component: NoseComponent;
+  let fixture: ComponentFixture<NoseComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TasteEditDetailComponent ],
+      declarations: [ NoseComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TasteEditDetailComponent);
+    fixture = TestBed.createComponent(NoseComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

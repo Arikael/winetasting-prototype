@@ -6,18 +6,20 @@
 <ion-item>
   <ion-label position="stacked">Favorites</ion-label>
   <p>
-    <ion-button size="small" color="secondary" *ngFor="let favorite of favoriteGrapes | async">{{favorite.name}}</ion-button>
+    <ion-button size="small" color="secondary" (click)="onFavoriteClick(favorite)" *ngFor="let favorite of favoriteGrapes | async">
+      {{favorite.name}}
+    </ion-button>
   </p>
 </ion-item>
 <ion-item>
   <ion-label position="stacked">Red Grapes</ion-label>
-  <ion-select multiple="true" name="red" placeholder="no red grapes">
+  <ion-select multiple="true" name="red" placeholder="no red grapes" formControlName="redGrapes">
     <ion-select-option *ngFor="let redGrape of redGrapes | async">{{redGrape.name}}</ion-select-option>
   </ion-select>
 </ion-item>
 <ion-item>
   <ion-label position="stacked">White Grapes</ion-label>
-  <ion-select multiple="true" name="white" placeholder="no white grapes">
+  <ion-select multiple="true" name="white" placeholder="no white grapes" formControlName="whiteGrapes">
     <ion-select-option *ngFor="let whiteGrape of whiteGrapes | async">{{whiteGrape.name}}</ion-select-option>
 
   </ion-select>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Grape } from './grape';
 import { Observable, of } from 'rxjs';
-import { publish, share } from 'rxjs/operators';
+import { shareReplay } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -9,7 +9,6 @@ import { publish, share } from 'rxjs/operators';
 export class GrapeApiService {
 
     getAllGrapes(): Observable<Grape[]> {
-        console.log('test');
         const items: Grape[] = [
             {
                 name: 'sauvignonBlanc',
@@ -44,7 +43,7 @@ export class GrapeApiService {
         ];
 
         return of(items).pipe(
-            share()
+            shareReplay()
         );
     }
 }

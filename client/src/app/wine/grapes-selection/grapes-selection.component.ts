@@ -5,10 +5,8 @@ import { GrapeApiService } from 'src/app/api/grape-api.service';
 import { Grape } from 'src/app/api/grape';
 
 export class GrapeSelectionView {
-  name = '';
-  title = '';
-  isFavorite = false;
-  type: 'red' | 'white';
+  whiteGrapes: Grape[];
+  redGrapes: Grape[];
 }
 
 @Component({
@@ -42,6 +40,10 @@ export class GrapesSelectionComponent implements OnInit {
   }
 
   ngOnInit() {
+
+  }
+
+  onFavoriteClick(favorite: Grape) {
 
   }
 

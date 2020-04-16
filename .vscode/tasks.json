@@ -1,0 +1,26 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "tsc watch",
+            "type": "shell",
+            "command": "call",
+            "isBackground": true,
+            "args": ["client/node_modules/.bin/tsc", "--watch", "--noEmit", "--project", "client"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "echo": false,
+                "focus": false,
+                "panel": "dedicated"
+            },
+            "problemMatcher": "$tsc-watch",
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
+        }
+    ]
+}

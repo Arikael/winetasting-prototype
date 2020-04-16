@@ -1,7 +1,7 @@
-import { WineListItem } from '../wine-list/wine-list-item';
 import { Observable, of } from 'rxjs';
 import { ConnectorService } from '../connectors/connector-service';
 import { Injectable } from '@angular/core';
+import { WineListItem } from '../wine/wine-list/wine-list-item';
 
 @Injectable({
         providedIn: 'root'

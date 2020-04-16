@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { WineListComponent } from './wine-list/wine-list/wine-list.component';
+import { WineListComponent } from './wine/wine-list/wine-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'wines', pathMatch: 'full' },

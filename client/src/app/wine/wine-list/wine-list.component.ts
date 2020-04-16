@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WineApiService } from 'src/app/api/wine-api.service';
 import { Observable } from 'rxjs';
-import { WineListItem } from '../wine-list-item';
+import { WineListItem } from './wine-list-item';
 
 @Component({
   selector: 'app-wine-list',

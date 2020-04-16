@@ -1,4 +1,4 @@
-<ion-list>
+<ion-list *transloco="let t">
   <ion-item-group>
     <ion-item-divider>
       <ion-label>Basic Information</ion-label>
@@ -13,7 +13,7 @@
     <ion-input type="number"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label position="stacked">Producer</ion-label>
+    <ion-label position="stacked">{{ t('Producer')}}</ion-label>
     <ion-input></ion-input>
   </ion-item>
   <ion-item>

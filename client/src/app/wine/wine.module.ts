@@ -8,6 +8,7 @@ import { TastesComponent } from './shared/tastes/tastes.component';
 import { GrapesSelectionComponent } from './shared/grapes-selection/grapes-selection.component';
 import { BaseDataComponent } from './add-wine/base-data/base-data.component';
 import { SummaryComponent } from './add-wine/summary/summary.component';
+import { TranslocoRootModule } from '../transloco-root.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SummaryComponent } from './add-wine/summary/summary.component';
   imports: [
     IonicModule,
     CommonModule,
-    WineRoutingModule
+    WineRoutingModule,
+    TranslocoRootModule
   ]
 })
 export class WineModule { }

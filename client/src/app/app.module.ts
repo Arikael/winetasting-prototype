@@ -9,11 +9,14 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ConnectorService } from './connectors/connector-service';
-import { connectorSeviceFactory } from './factories/factories';
+import { connectorSeviceFactory, HttpLoaderFactory } from './app-factories.module';
 import { WineApiService } from './api/wine-api.service';
 import { LocalStorageService } from './connectors/local-storage-service';
 import { WineListComponent } from './wine/wine-list/wine-list.component';
 import { WineListItemComponent } from './wine/wine-list/wine-list-item/wine-list-item.component';
+import { TranslateModule, TranslateLoader, MissingTranslationHandler } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { WineTastingMissingTranslationHandler } from './helpers/wine-tasting-missing-translation-handler';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,23 @@ import { WineListItemComponent } from './wine/wine-list/wine-list-item/wine-list
     WineListItemComponent
   ],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [
+    BrowserModule, 
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      },
+      missingTranslationHandler: {
+        provide: MissingTranslationHandler,
+        useClass: WineTastingMissingTranslationHandler
+      },
+      defaultLanguage: 'de'
+  }),
+    IonicModule.forRoot(), 
+    AppRoutingModule
+  ],
   providers: [
     {
       provide: ConnectorService,
@@ -33,6 +52,7 @@ import { WineListItemComponent } from './wine/wine-list/wine-list-item/wine-list
     Platform,
     SplashScreen,
     LocalStorageService,
+  
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

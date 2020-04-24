@@ -29,7 +29,8 @@ export class TasteItemComponent implements OnInit, ControlValueAccessor, AfterVi
     const tapAndDoubleTapGesture = this.gestureController.create({
       gestureName: 'tapAndDoubleTap',
       el: this.tasteDiv.nativeElement,
-      onStart: createTapAndDoubleTapGestureOnStart(this.toggleSelectedState, this.openDetail, 400)
+      threshold: 0,
+      onStart: createTapAndDoubleTapGestureOnStart(() => this.toggleSelectedState, () => this.openDetail, 400)
     });
 
     tapAndDoubleTapGesture.enable();

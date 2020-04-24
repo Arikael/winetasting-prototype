@@ -1,4 +1,4 @@
-export function createTapAndDoubleTapGestureOnStart(onTap: () => void, onDoubleTap: () => void, doubleTapThreshold: number) {
+export function createTapAndDoubleTapGestureOnStart(onTap: () => void, onDoubleTap: () => void, doubleTapThreshold: number): () => void {
     return (() => {
         let timeout = null;
         let lastOnStart = 0;

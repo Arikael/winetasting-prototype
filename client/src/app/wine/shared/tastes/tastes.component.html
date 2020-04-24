@@ -1,3 +1,7 @@
-<div class="tastes">
-  <app-taste-category *ngFor="let category of tasteCategories | async" [category]="category"></app-taste-category>
-</div>
+<ion-content>
+  <div class="tastes">
+    <ion-grid>
+      <app-taste-category *ngFor="let category of tasteCategories | async" [category]="category"></app-taste-category>
+    </ion-grid>
+  </div>
+</ion-content>

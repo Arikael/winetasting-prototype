@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TasteService } from '../../services/taste.service';
+import { Observable } from 'rxjs';
+import { TasteCategory } from '../../models/taste-category';
 
 @Component({
   selector: 'app-tastes',
@@ -7,8 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TastesComponent implements OnInit {
 
-  constructor() { }
+  get tasteCategories(): Observable<TasteCategory[]> {
+    return this.tasteService.getTasteCatgories('');
+  }
 
-  ngOnInit() {}
+  constructor(private tasteService: TasteService) { }
+
+  ngOnInit() {
+
+  }
 
 }

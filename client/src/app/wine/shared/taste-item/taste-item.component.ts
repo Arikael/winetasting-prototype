@@ -1,23 +1,9 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { ModalController, GestureController } from '@ionic/angular';
 import { TasteItemDetailComponent } from './taste-item-detail.component';
 import { createTapAndDoubleTapGestureOnStart } from 'src/app/gestures-animations/tap-and-doubletap.gesture';
-
-export class TasteModel {
-  tasteKey = '';
-  isSelected = false;
-  when = '';
-  howMuch = '';
-
-  static isOfType(obj: any): obj is TasteModel {
-    if ('tasteKey' in obj && 'isSelected' in obj) {
-      return true;
-    }
-
-    return false;
-  }
-}
+import { TasteModel } from '../../models/taste.model';
 
 @Component({
   selector: 'app-taste-item',
@@ -26,6 +12,8 @@ export class TasteModel {
 })
 export class TasteItemComponent implements OnInit, ControlValueAccessor, AfterViewInit {
 
+  @Input() color = '';
+  @Input() tasteKey = '';
   @ViewChild('tasteItem') tasteDiv: ElementRef;
   private value: TasteModel = null;
   private onChange: () => {};

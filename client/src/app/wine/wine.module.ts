@@ -9,6 +9,11 @@ import { GrapesSelectionComponent } from './shared/grapes-selection/grapes-selec
 import { BaseDataComponent } from './add-wine/base-data/base-data.component';
 import { SummaryComponent } from './add-wine/summary/summary.component';
 import { TranslocoRootModule } from '../transloco-root.module';
+import { TasteCategoryComponent } from './shared/taste-category/taste-category.component';
+import { PalateComponent } from './add-wine/palate/palate.component';
+import { NoseComponent } from './add-wine/nose/nose.component';
+import { TasteItemComponent } from './shared/taste-item/taste-item.component';
+import { TasteItemDetailComponent } from './shared/taste-item/taste-item-detail.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +21,12 @@ import { TranslocoRootModule } from '../transloco-root.module';
     BaseDataComponent,
     WizardStepperComponent,
     TastesComponent,
+    TasteCategoryComponent,
+    TasteItemComponent,
+    TasteItemDetailComponent,
     SummaryComponent,
+    NoseComponent,
+    PalateComponent,
     GrapesSelectionComponent
   ],
   imports: [

@@ -4,9 +4,9 @@
         {
             "label": "tsc watch",
             "type": "shell",
-            "command": "call",
+            "command": "client/node_modules/.bin/tsc",
             "isBackground": true,
-            "args": ["client/node_modules/.bin/tsc", "--watch", "--noEmit", "--project", "client"],
+            "args": ["--watch", "--noEmit", "--project", "client"],
             "group": {
                 "kind": "build",
                 "isDefault": true

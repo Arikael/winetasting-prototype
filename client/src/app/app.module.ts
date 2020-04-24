@@ -15,6 +15,7 @@ import { LocalStorageService } from './connectors/local-storage-service';
 import { WineListComponent } from './wine/wine-list/wine-list.component';
 import { WineListItemComponent } from './wine/wine-list/wine-list-item/wine-list-item.component';
 import { TranslocoRootModule } from './transloco-root.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,9 +25,10 @@ import { TranslocoRootModule } from './transloco-root.module';
   ],
   entryComponents: [],
   imports: [
-    BrowserModule, 
-    IonicModule.forRoot(), 
-    AppRoutingModule, 
+    BrowserModule,
+    HttpClientModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
     TranslocoRootModule
   ],
   providers: [
@@ -39,9 +41,9 @@ import { TranslocoRootModule } from './transloco-root.module';
     Platform,
     SplashScreen,
     LocalStorageService,
-  
+
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

@@ -1,3 +1,8 @@
-<p>
-  taste-item works!
-</p>
+<div [ngClass]="{'taste': true, 'selected': isSelected}" #tasteItem>
+  <div class="taste__content">
+    <object class="taste__icon" data="" type="image/svg+xml"></object>
+    <div class="taste__description-container">
+      <span class="taste__description"></span>
+    </div>
+  </div>
+</div>

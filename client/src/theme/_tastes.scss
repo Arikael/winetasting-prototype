@@ -1,0 +1,97 @@
+:root{
+    --earth-category-background: #e1cfbd; 
+    --earth-category-title-color: #5f453a;
+    --earth-taste-background: #d3b89d;
+
+    --herbs-category-background: #e8f5be; 
+    --herbs-category-title-color: #506624;
+    --herbs-taste-background: #d9ef94;
+    
+    --citrus-category-background: #fdf6b4; 
+    --citrus-category-title-color: #6d6303;
+    --citrus-taste-background: #fcf18d;
+
+    --fruit-category-background: #fff4d2; 
+    --fruit-category-title-color: #805400;
+    --fruit-taste-background: #ffebad;
+
+    --tropicalFruit-category-background: #ffe4bb; 
+    --tropicalFruit-category-title-color: #8a5300;
+    --tropicalFruit-taste-background: #ffd596;
+
+    --redFruit-category-background: #f4c7cc; 
+    --redFruit-category-title-color: #8d1b4d;
+    --redFruit-taste-background: #eda0a8;
+}
+
+.earth.taste-category {
+    background: var(--earth-category-background);
+}
+
+.earth.taste-category-title {
+    color: var(--earth-category-title-color);
+}
+
+.earth.taste {
+    background: var(--earth-taste-background);
+}
+
+.herbs.taste-category {
+    background: var(--herbs-category-background);
+}
+
+.herbs.taste-category-title {
+    color: var(--herbs-category-title-color);
+}
+
+.herbs.taste {
+    background: var(--herbs-taste-background);
+}
+
+.citrus.taste-category {
+    background: var(--citrus-category-background);
+}
+
+.citrus.taste-category-title {
+    color: var(--citrus-category-title-color);
+}
+
+.citrus.taste {
+    background: var(--citrus-taste-background);
+}
+
+.fruit.taste-category {
+    background: var(--fruit-category-background);
+}
+
+.fruit.taste-category-title {
+    color: var(--fruit-category-title-color);
+}
+
+.fruit.taste {
+    background: var(--fruit-taste-background);
+}
+
+.tropicalFruit.taste-category {
+    background: var(--tropicalFrit-category-background);
+}
+
+.tropicalFruit.taste-category-title {
+    color: var(--tropicalFruit-category-title-color);
+}
+
+.tropicalFruit.taste {
+    background:  var(--tropicalFruit-taste-background);
+}
+
+.redFruit.taste-category {
+    background: var(--redFruit-category-background);
+}
+
+.redFruit.taste-category-title {
+    color: var(--redFruit-category-title-color);
+}
+
+.redFruit.taste {
+    background: var(--redFruit-taste-background);
+}

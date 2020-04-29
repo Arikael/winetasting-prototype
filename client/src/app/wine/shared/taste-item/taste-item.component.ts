@@ -12,8 +12,9 @@ import { TasteModel } from '../../models/taste.model';
 })
 export class TasteItemComponent implements OnInit, ControlValueAccessor, AfterViewInit {
 
-  @Input() color = '';
+  @Input() tasteCategory = '';
   @Input() tasteKey = '';
+  @Input() hasIcon = false;
   @ViewChild('tasteItem') tasteDiv: ElementRef;
   private value: TasteModel = null;
   private onChange: () => {};
@@ -23,14 +24,27 @@ export class TasteItemComponent implements OnInit, ControlValueAccessor, AfterVi
     return this.value?.isSelected;
   }
 
-  constructor(public modalController: ModalController, private gestureController: GestureController) { }
+  get ngClassObj() {
+    const obj = {
+      taste: true,
+      selected: this.isSelected,
+    };
+
+    obj[this.tasteCategory] = true;
+
+    return obj;
+  }
+
+  constructor(public modalController: ModalController, private gestureController: GestureController) {
+    this.value = new TasteModel();
+  }
 
   ngAfterViewInit(): void {
     const tapAndDoubleTapGesture = this.gestureController.create({
       gestureName: 'tapAndDoubleTap',
       el: this.tasteDiv.nativeElement,
       threshold: 0,
-      onStart: createTapAndDoubleTapGestureOnStart(() => this.toggleSelectedState, () => this.openDetail, 400)
+      onStart: createTapAndDoubleTapGestureOnStart(this.toggleSelectedState.bind(this), () => this.openDetail, 400)
     });
 
     tapAndDoubleTapGesture.enable();

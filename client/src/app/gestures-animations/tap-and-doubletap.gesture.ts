@@ -5,7 +5,6 @@ export function createTapAndDoubleTapGestureOnStart(onTap: () => void, onDoubleT
 
         return () => {
             const now = Date.now();
-            console.log('test');
 
             if (Math.abs(now - lastOnStart) <= doubleTapThreshold) {
                 clearTimeout(timeout);

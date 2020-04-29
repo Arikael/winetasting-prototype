@@ -1,8 +1,8 @@
-<div *transloco="let t" [ngClass]="{'taste': true, 'selected': isSelected}" #tasteItem>
+<div *transloco="let t" [ngClass]="ngClassObj" #tasteItem>
   <div class="taste__content">
-    <object class="taste__icon" data="" type="image/svg+xml"></object>
+    <object *ngIf="hasIcon" class="taste__icon" data="" type="image/svg+xml"></object>
     <div class="taste__description-container">
-      <span class="taste__description">{{ t(tasteKey) }}</span>
+      {{ t(tasteKey) }}
     </div>
   </div>
 </div>

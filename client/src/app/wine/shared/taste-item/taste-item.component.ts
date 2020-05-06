@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Input, ChangeDetectionStrategy, NgZone, ChangeDetectorRef } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { ModalController, GestureController } from '@ionic/angular';
 import { TasteItemDetailComponent } from './taste-item-detail.component';
@@ -8,21 +8,19 @@ import { TasteModel } from '../../models/taste.model';
 @Component({
   selector: 'app-taste-item',
   templateUrl: './taste-item.component.html',
-  styleUrls: ['./taste-item.component.scss'],
+  styleUrls: ['./taste-item.component.scss']
 })
 export class TasteItemComponent implements OnInit, ControlValueAccessor, AfterViewInit {
 
   @Input() tasteCategory = '';
   @Input() tasteKey = '';
   @Input() hasIcon = false;
-  @ViewChild('tasteItem') tasteDiv: ElementRef;
+  @ViewChild('tasteItem', { read: ElementRef}) tasteDiv: ElementRef;
   private value: TasteModel = null;
   private onChange: () => {};
   private onBlur: () => {};
 
-  get isSelected(): boolean {
-    return this.value?.isSelected;
-  }
+  isSelected = false;
 
   get ngClassObj() {
     const obj = {
@@ -35,7 +33,8 @@ export class TasteItemComponent implements OnInit, ControlValueAccessor, AfterVi
     return obj;
   }
 
-  constructor(public modalController: ModalController, private gestureController: GestureController) {
+  constructor(public modalController: ModalController, private gestureController: GestureController, private ngZone: NgZone,
+              private cd: ChangeDetectorRef) {
     this.value = new TasteModel();
   }
 
@@ -44,7 +43,7 @@ export class TasteItemComponent implements OnInit, ControlValueAccessor, AfterVi
       gestureName: 'tapAndDoubleTap',
       el: this.tasteDiv.nativeElement,
       threshold: 0,
-      onStart: createTapAndDoubleTapGestureOnStart(this.toggleSelectedState.bind(this), () => this.openDetail, 400)
+      onStart: () => this.ngZone.run(() => this.toggleSelectedState())
     });
 
     tapAndDoubleTapGesture.enable();
@@ -70,7 +69,9 @@ export class TasteItemComponent implements OnInit, ControlValueAccessor, AfterVi
   ngOnInit() { }
 
   toggleSelectedState() {
-    this.value.isSelected = !this.value.isSelected;
+     // this.ngZone.run(() => {this.isSelected = !this.isSelected; console.log(this.tasteDiv.nativeElement); });
+    this.isSelected = !this.isSelected;
+    // this.cd.detectChanges();
   }
 
   async openDetail() {

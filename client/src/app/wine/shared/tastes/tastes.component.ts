@@ -9,15 +9,12 @@ import { TasteCategory } from '../../models/taste-category';
   styleUrls: ['./tastes.component.scss'],
 })
 export class TastesComponent implements OnInit {
-
-  get tasteCategories(): Observable<TasteCategory[]> {
-    return this.tasteService.getTasteCatgories('');
-  }
+  tasteCategories: Observable<TasteCategory[]>;
 
   constructor(private tasteService: TasteService) { }
 
   ngOnInit() {
-
+    this.tasteCategories = this.tasteService.getTasteCatgories('');
   }
 
 }

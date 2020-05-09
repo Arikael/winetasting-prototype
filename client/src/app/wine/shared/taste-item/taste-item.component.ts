@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Input, ChangeDetectionStrategy, NgZone, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Input, NgZone, ChangeDetectorRef } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { ModalController, GestureController } from '@ionic/angular';
 import { TasteItemDetailComponent } from './taste-item-detail.component';
@@ -10,12 +10,12 @@ import { TasteModel } from '../../models/taste.model';
   templateUrl: './taste-item.component.html',
   styleUrls: ['./taste-item.component.scss']
 })
-export class TasteItemComponent implements OnInit, ControlValueAccessor, AfterViewInit {
+export class TasteItemComponent implements OnInit, AfterViewInit, ControlValueAccessor {
 
   @Input() tasteCategory = '';
   @Input() tasteKey = '';
   @Input() hasIcon = false;
-  @ViewChild('tasteItem', { read: ElementRef}) tasteDiv: ElementRef;
+  @ViewChild('tasteItem') tasteDiv: ElementRef;
   private value: TasteModel = null;
   private onChange: () => {};
   private onBlur: () => {};
@@ -38,13 +38,18 @@ export class TasteItemComponent implements OnInit, ControlValueAccessor, AfterVi
     this.value = new TasteModel();
   }
 
+  ngOnInit() { }
+
   ngAfterViewInit(): void {
     const tapAndDoubleTapGesture = this.gestureController.create({
       gestureName: 'tapAndDoubleTap',
       el: this.tasteDiv.nativeElement,
       threshold: 0,
-      onStart: () => this.ngZone.run(() => this.toggleSelectedState())
-    });
+      onStart: createTapAndDoubleTapGestureOnStart(
+        () => this.ngZone.run(() => this.toggleSelectedState()),
+        this.openDetail.bind(this),
+        400)
+    }, true);
 
     tapAndDoubleTapGesture.enable();
   }
@@ -59,19 +64,17 @@ export class TasteItemComponent implements OnInit, ControlValueAccessor, AfterVi
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
+
   registerOnTouched(fn: any): void {
     this.onBlur = fn;
   }
+
   setDisabledState?(isDisabled: boolean): void {
     throw new Error('Method not implemented.');
   }
 
-  ngOnInit() { }
-
   toggleSelectedState() {
-     // this.ngZone.run(() => {this.isSelected = !this.isSelected; console.log(this.tasteDiv.nativeElement); });
     this.isSelected = !this.isSelected;
-    // this.cd.detectChanges();
   }
 
   async openDetail() {

@@ -20,7 +20,7 @@ const routes: Routes = [
         component: BaseDataComponent
       },
       {
-        path: 'smell',
+        path: 'nose',
         component: TastesComponent
       },
       {

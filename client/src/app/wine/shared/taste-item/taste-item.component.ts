@@ -1,9 +1,9 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Input, NgZone, ChangeDetectorRef } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { ModalController, GestureController } from '@ionic/angular';
-import { TasteItemDetailComponent } from './taste-item-detail.component';
 import { createTapAndDoubleTapGestureOnStart } from 'src/app/gestures-animations/tap-and-doubletap.gesture';
 import { TasteModel } from '../../models/taste.model';
+import { TasteItemDetailComponent } from './taste-item-detail/taste-item-detail.component';
 
 @Component({
   selector: 'app-taste-item',
@@ -79,7 +79,10 @@ export class TasteItemComponent implements OnInit, AfterViewInit, ControlValueAc
 
   async openDetail() {
     const modal = await this.modalController.create({
-      component: TasteItemDetailComponent
+      component: TasteItemDetailComponent,
+      componentProps: {
+
+      }
     });
 
     return await modal.present();

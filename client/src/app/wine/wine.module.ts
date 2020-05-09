@@ -13,7 +13,7 @@ import { TasteCategoryComponent } from './shared/taste-category/taste-category.c
 import { PalateComponent } from './add-wine/palate/palate.component';
 import { NoseComponent } from './add-wine/nose/nose.component';
 import { TasteItemComponent } from './shared/taste-item/taste-item.component';
-import { TasteItemDetailComponent } from './shared/taste-item/taste-item-detail.component';
+import { TasteItemDetailComponent } from './shared/taste-item/taste-item-detail/taste-item-detail.component';
 
 @NgModule({
   declarations: [

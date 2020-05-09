@@ -32,7 +32,8 @@
     color: var(--earth-category-title-color);
 }
 
-.earth.taste {
+.earth.taste,
+.earth .taste {
     background: var(--earth-taste-background);
 }
 
@@ -44,7 +45,8 @@
     color: var(--herbs-category-title-color);
 }
 
-.herbs.taste {
+.herbs.taste,
+.herbs .taste {
     background: var(--herbs-taste-background);
 }
 
@@ -56,7 +58,8 @@
     color: var(--citrus-category-title-color);
 }
 
-.citrus.taste {
+.citrus.taste,
+.citrus .taste {
     background: var(--citrus-taste-background);
 }
 
@@ -68,19 +71,21 @@
     color: var(--fruit-category-title-color);
 }
 
-.fruit.taste {
+.fruit.taste,
+.fruit .taste {
     background: var(--fruit-taste-background);
 }
 
 .tropicalFruit.taste-category {
-    background: var(--tropicalFrit-category-background);
+    background: var(--tropicalFruit-category-background);
 }
 
 .tropicalFruit.taste-category-title {
     color: var(--tropicalFruit-category-title-color);
 }
 
-.tropicalFruit.taste {
+.tropicalFruit.taste,
+.tropicalFruit .taste {
     background:  var(--tropicalFruit-taste-background);
 }
 
@@ -92,6 +97,7 @@
     color: var(--redFruit-category-title-color);
 }
 
-.redFruit.taste {
+.redFruit.taste,
+.redFruit .taste {
     background: var(--redFruit-taste-background);
 }

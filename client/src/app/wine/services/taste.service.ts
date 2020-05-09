@@ -12,8 +12,6 @@ export class TasteService {
             {
                 name: 'earth',
                 color: '',
-                bgColor: '',
-                tasteBgColor: '',
                 tastes: [
                     {
                         name: 'beeswax',

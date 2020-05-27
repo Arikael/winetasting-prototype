@@ -1,0 +1,25 @@
+<div class="button-details__intensities" *transloco="let t">
+  <div class="button-details__time-quantifiers">
+    <h2 class="button-details__headline i-smell">{{t('iSmell')}}</h2>
+    <div class="button-details__when">
+      <ng-container *ngTemplateOutlet="buttonList; context: {data: tasteTimeQuantifiers}"></ng-container>
+    </div>
+    <div>
+      <ion-icon name="arrow-down-outline"></ion-icon>
+    </div>
+    <div class="button-details__howmuch">
+      <ng-container *ngTemplateOutlet="buttonList; context: {data: tasteQualifiers}"></ng-container>
+    </div>
+    <h2 class="button-details__headline taste-title">{{t(tasteKey)}}</h2>
+    <button class="btn taste-edit__ok">
+      {{t('finished')}}
+    </button>
+  </div>
+</div>
+<ng-template #buttonList let-data="data">
+  <ul class="button-details__buttons" *transloco="let t">
+    <li *ngFor="let intensity of data">
+      <ion-button color="medium">{{t(intensity.key)}}</ion-button>
+    </li>
+  </ul>
+</ng-template>

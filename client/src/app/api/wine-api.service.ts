@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
 import { WineListItem } from '../wine/wine-list/wine-list-item';
 
 @Injectable({
-        providedIn: 'root'
-    }
+    providedIn: 'root'
+}
 )
 export class WineApiService {
     /**

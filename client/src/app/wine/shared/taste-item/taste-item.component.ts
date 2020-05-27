@@ -81,7 +81,7 @@ export class TasteItemComponent implements OnInit, AfterViewInit, ControlValueAc
     const modal = await this.modalController.create({
       component: TasteItemDetailComponent,
       componentProps: {
-
+        tasteKey: this.value.tasteKey
       }
     });
 

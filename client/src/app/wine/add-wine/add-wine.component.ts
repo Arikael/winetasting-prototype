@@ -21,7 +21,7 @@ export class AddWineComponent implements OnInit {
     {
       id: 'nose',
       icon: 'nutrition-outline',
-      link: '/wine/add/smell'
+      link: '/wine/add/nose'
     },
     {
       id: 'mouth',

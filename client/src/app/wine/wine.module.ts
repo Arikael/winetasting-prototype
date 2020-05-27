@@ -14,6 +14,7 @@ import { PalateComponent } from './add-wine/palate/palate.component';
 import { NoseComponent } from './add-wine/nose/nose.component';
 import { TasteItemComponent } from './shared/taste-item/taste-item.component';
 import { TasteItemDetailComponent } from './shared/taste-item/taste-item-detail/taste-item-detail.component';
+import { TasteItemButtonDetailComponent } from './shared/taste-item/taste-item-detail/taste-item-button-detail-component/taste-item-button-detail.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { TasteItemDetailComponent } from './shared/taste-item/taste-item-detail/
     SummaryComponent,
     NoseComponent,
     PalateComponent,
-    GrapesSelectionComponent
+    GrapesSelectionComponent,
+    TasteItemButtonDetailComponent
   ],
   imports: [
     IonicModule,

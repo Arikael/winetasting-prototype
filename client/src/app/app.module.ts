@@ -16,6 +16,7 @@ import { WineListComponent } from './wine/wine-list/wine-list.component';
 import { WineListItemComponent } from './wine/wine-list/wine-list-item/wine-list-item.component';
 import { TranslocoRootModule } from './transloco-root.module';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    TranslocoRootModule
+    TranslocoRootModule,
+    SharedModule
   ],
   providers: [
     {

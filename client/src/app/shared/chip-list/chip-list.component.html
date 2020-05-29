@@ -1,0 +1,5 @@
+<div *transloco="let t" [class]="class">
+  <ion-chip *ngFor="let chip of items" [color]="getChipColor(chip)" (click)="onChipClick(chip)">
+    <ion-label>{{ t(label ? label : chip[key])}}</ion-label>
+  </ion-chip>
+</div>

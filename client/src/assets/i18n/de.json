@@ -1,3 +1,13 @@
 {
-    "Producer": "Winzer"
+    "Producer": "Winzer",
+    "close": "Schliessen",
+    "finished": "Fertig",
+    "iSmell": "Ich rieche",
+    "immediatly": "sofort",
+    "afterSomeTime": "nach einer Zeit",
+    "withSomeAir": "mit etwas Luft",
+    "hintsOf": "Noten von",
+    "some": "etwas",
+    "alot": "viel",
+    "tooMuch": "zuviel"
 }

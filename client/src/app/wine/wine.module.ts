@@ -21,7 +21,6 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     AddWineComponent,
     BaseDataComponent,
-    WizardStepperComponent,
     TastesComponent,
     TasteCategoryComponent,
     TasteItemComponent,

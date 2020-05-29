@@ -5,7 +5,7 @@
     </ion-button>
   </ion-buttons>
   <ion-buttons>
-    <ion-button *ngFor="let step of wizardSteps" (click)="setStep(step)">
+    <ion-button *ngFor="let step of config.steps" (click)="setStep(step.key)">
       <ion-icon [name]="step.icon" size="large"></ion-icon>
     </ion-button>
   </ion-buttons>

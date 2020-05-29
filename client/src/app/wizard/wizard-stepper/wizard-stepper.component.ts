@@ -1,8 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { WizardService } from '../wizard.service';
-import { WizardStep } from '../wizard-step';
-import { ActivatedRoute, Router } from '@angular/router';
-import { from } from 'rxjs';
+import { WizardStep, WizardConfig } from '../wizard-step';
 
 @Component({
   selector: 'app-wizard-stepper',
@@ -10,25 +7,48 @@ import { from } from 'rxjs';
   styleUrls: ['./wizard-stepper.component.scss'],
 })
 export class WizardStepperComponent implements OnInit {
-  constructor(private router: Router, private wizardService: WizardService) { }
 
-  get wizardSteps(): WizardStep[] {
-    return this.wizardService.allSteps;
+  @Input() config: WizardConfig = {
+    steps: [],
+    selectedStep: null
+  };
+
+  constructor() {
+
   }
 
   ngOnInit() {
 
   }
 
-  setStep(step: WizardStep) {
-    this.wizardService.setCurrentStep(step);
+  setStep(stepKey: string) {
+    const step = this.config.steps.find(x => x.key === stepKey);
+
+    if (step) {
+      this.config.selectedStep = step;
+    }
+
   }
 
   forward() {
-    this.wizardService.forward();
+    const currentStep = this.getCurrentStepIndex();
+
+    if (currentStep < this.config.steps.length) {
+      this.config.selectedStep = this.config.steps[currentStep + 1];
+    }
   }
 
   back() {
-    this.wizardService.back();
+    const currentStep = this.getCurrentStepIndex();
+
+    if (currentStep > 0) {
+      this.config.selectedStep = this.config.steps[currentStep - 1];
+    }
+  }
+
+  private getCurrentStepIndex(): number {
+    return this.config.selectedStep
+      ? this.config.steps.findIndex(x => x.key === this.config.selectedStep.key)
+      : 0;
   }
 }

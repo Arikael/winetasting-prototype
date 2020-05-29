@@ -3,12 +3,17 @@
     <ion-buttons slot="start">
       <ion-back-button defaulthref="wines"></ion-back-button>
     </ion-buttons>
-    <ion-title>Add Wine</ion-title>
+    <ion-title *transloco="let t">{{t('addWine')}}</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-router-outlet></ion-router-outlet>
+  <ng-container [ngSwitch]="wizardConfig?.selectedStep.key">
+    <app-base-data *ngSwitchCase="'base'"></app-base-data>
+    <app-nose *ngSwitchCase="'nose'"></app-nose>
+    <app-palate *ngSwitchCase="'palate'"></app-palate>
+    <app-summary *ngSwitchCase="'rating'"></app-summary>
+  </ng-container>
 </ion-content>
 <ion-footer>
-  <app-wizard-stepper></app-wizard-stepper>  
+  <app-wizard-stepper [config]="wizardConfig"></app-wizard-stepper>  
 </ion-footer>

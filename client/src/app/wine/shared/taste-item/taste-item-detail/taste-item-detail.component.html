@@ -1,15 +1,17 @@
 <ion-header>
   <ion-toolbar *transloco="let t">
-    <ion-title>Modal Content</ion-title>
+    <ion-title>{{t('tasteDetail')}}</ion-title>
     <ion-buttons slot="end">
-      <ion-button onclick="dismissModal()">Close</ion-button>
+      <ion-button (click)="dismissModal($event)">
+        <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen class="ion-padding">
-  <div *transloco="let t">{{t(tasteKey)}}</div>
   <div>
-    <app-taste-item-button-detail-component [tasteQualifiers]="tasteQualifiers"
-      [tasteTimeQuantifiers]="tasteTimeQuantifiers"></app-taste-item-button-detail-component>
+    <app-taste-item-button-detail-component [tasteKey]="tasteKey" [tasteQualifiers]="tasteQualifiers"
+      (finishedEdit)="finishEdit($event)" [tasteTimeQuantifiers]="tasteTimeQuantifiers">
+    </app-taste-item-button-detail-component>
   </div>
 </ion-content>

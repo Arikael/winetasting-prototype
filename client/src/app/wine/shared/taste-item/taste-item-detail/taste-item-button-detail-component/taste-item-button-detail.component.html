@@ -1,17 +1,17 @@
-<div class="button-details__intensities" *transloco="let t">
+<div class="button-details__intensities ion-text-center" *transloco="let t">
   <div class="button-details__time-quantifiers">
     <h2 class="button-details__headline i-smell">{{t('iSmell')}}</h2>
     <div class="button-details__when">
-      <app-chip-list class="ion-text-center" [items]="tasteTimeQuantifiers"></app-chip-list>
+      <app-chip-list [items]="tasteTimeQuantifiers"></app-chip-list>
     </div>
     <div class="ion-text-center">
       <ion-icon class="button-details__separator" name="arrow-down-outline"></ion-icon>
     </div>
     <div class="button-details__howmuch">
-      <app-chip-list class="ion-text-center" [items]="tasteQualifiers"></app-chip-list>
+      <app-chip-list [items]="tasteQualifiers"></app-chip-list>
     </div>
     <h2 class="button-details__headline taste-title">{{t(tasteKey)}}</h2>
-    <ion-button>
+    <ion-button class="ion-margin-top" expand="block" (click)="finish()">
       {{t('finished')}}
     </ion-button>
   </div>

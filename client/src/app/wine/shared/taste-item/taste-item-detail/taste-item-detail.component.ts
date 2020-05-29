@@ -4,6 +4,7 @@ import { forkJoin } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { TasteQualifier } from 'src/app/wine/models/taste-qualifier';
 import { TasteTimeQuantifier } from 'src/app/wine/models/taste-time-quantifier';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-taste-item-detail',
@@ -16,7 +17,7 @@ export class TasteItemDetailComponent implements OnInit {
   tasteQualifiers: TasteQualifier[] = [];
   tasteTimeQuantifiers: TasteTimeQuantifier[] = [];
 
-  constructor(private tasteIntensityService: TasteIntensityService) { }
+  constructor(private tasteIntensityService: TasteIntensityService, private modalController: ModalController) { }
 
   ngOnInit() {
     forkJoin([this.tasteIntensityService.getTasteQualifiers(),
@@ -27,5 +28,13 @@ export class TasteItemDetailComponent implements OnInit {
         this.tasteTimeQuantifiers = tasteIntensities[1];
       })
     ).subscribe();
+  }
+
+  dismissModal(event: any) {
+    this.modalController.dismiss();
+  }
+
+  finishEdit(data: any) {
+    this.modalController.dismiss();
   }
 }

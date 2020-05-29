@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChildren, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, ViewChildren, OnChanges, SimpleChanges, EventEmitter, Output } from '@angular/core';
 import { TasteQualifier } from 'src/app/wine/models/taste-qualifier';
 import { TasteTimeQuantifier } from 'src/app/wine/models/taste-time-quantifier';
 import { TasteIntensity } from 'src/app/wine/models/taste-intensity';
@@ -15,10 +15,13 @@ export class TasteItemButtonDetailComponent implements OnInit {
   @Input() tasteKey = '';
   @Input() tasteQualifiers: TasteQualifier[] = [];
   @Input() tasteTimeQuantifiers: TasteTimeQuantifier[] = [];
+  @Output() finishedEdit = new EventEmitter<any>();
 
   constructor() { }
   ngOnInit() {}
 
-
+  finish() {
+    this.finishedEdit.emit(null);
+  }
 
 }

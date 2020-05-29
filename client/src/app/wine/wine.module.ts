@@ -15,6 +15,7 @@ import { NoseComponent } from './add-wine/nose/nose.component';
 import { TasteItemComponent } from './shared/taste-item/taste-item.component';
 import { TasteItemDetailComponent } from './shared/taste-item/taste-item-detail/taste-item-detail.component';
 import { TasteItemButtonDetailComponent } from './shared/taste-item/taste-item-detail/taste-item-button-detail-component/taste-item-button-detail.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { TasteItemButtonDetailComponent } from './shared/taste-item/taste-item-d
     IonicModule,
     CommonModule,
     WineRoutingModule,
-    TranslocoRootModule
+    TranslocoRootModule,
+    SharedModule
   ]
 })
 export class WineModule { }

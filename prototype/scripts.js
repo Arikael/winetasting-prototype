@@ -13,7 +13,7 @@ var loadFn = function () {
         physicalResolution
     };
 
-    var debugInfo = Sqrl.Render(template, debugInfoData);
+    var debugInfo = Sqrl.render(template, debugInfoData);
     document.querySelector('.debug-information').innerHTML = debugInfo;
 
     var singleTap = new Hammer.Tap({ event: 'singletap' });
@@ -28,7 +28,7 @@ var loadFn = function () {
     tasteRequest.onload = function () {
         var tasteTemplate = document.querySelector('#tastesTemplate').innerHTML;
         allTastes = tasteRequest.response;
-        var tastes = Sqrl.Render(tasteTemplate, tasteRequest.response);
+        var tastes = Sqrl.render(tasteTemplate, tasteRequest.response);
         document.querySelector('#taste-data').innerHTML = tastes;
 
         //taste buttons
@@ -64,7 +64,7 @@ var loadFn = function () {
                 });
 
                 var tasteEditTemplate = document.querySelector('#taste-edit').innerHTML;
-                var tastes = Sqrl.Render(tasteEditTemplate, taste);
+                var tastes = Sqrl.render(tasteEditTemplate, taste);
                 var dialog = document.querySelector('#taste-edit-dialog');
                 dialog.setAttribute('data-name', tasteName);
                 dialog.classList.add('open');

@@ -1,6 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChildren, OnChanges, SimpleChanges } from '@angular/core';
 import { TasteQualifier } from 'src/app/wine/models/taste-qualifier';
 import { TasteTimeQuantifier } from 'src/app/wine/models/taste-time-quantifier';
+import { TasteIntensity } from 'src/app/wine/models/taste-intensity';
+import { nameof } from 'src/app/utilities/nameof';
+import { TasteItemDetailComponent } from '../taste-item-detail.component';
 
 @Component({
   selector: 'app-taste-item-button-detail-component',
@@ -14,7 +17,8 @@ export class TasteItemButtonDetailComponent implements OnInit {
   @Input() tasteTimeQuantifiers: TasteTimeQuantifier[] = [];
 
   constructor() { }
-
   ngOnInit() {}
+
+
 
 }

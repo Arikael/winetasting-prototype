@@ -10,7 +10,7 @@ export class TasteIntensityService {
     getTasteQualifiers(): Observable<TasteQualifier[]> {
         return of([
             {
-                key: 'hints',
+                key: 'hintsOf',
                 intensity: 1,
             },
             {
@@ -22,7 +22,7 @@ export class TasteIntensityService {
                 intensity: 7,
             },
             {
-                key: 'toomuch',
+                key: 'tooMuch',
                 intensity: 9
             }
         ]);
@@ -35,11 +35,11 @@ export class TasteIntensityService {
                 intensity: 1,
             },
             {
-                key: 'after some time',
+                key: 'afterSomeTime',
                 intensity: 5
             },
             {
-                key: 'with some air',
+                key: 'withSomeAir',
                 intensity: 8,
             }
         ]);

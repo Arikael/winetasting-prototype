@@ -23,6 +23,7 @@ export class ChipListComponent implements OnInit, OnChanges {
   @Input() class = '';
 
   @Output() selectedItemsChanged = new EventEmitter<any[]>();
+  @Output() chipClicked = new EventEmitter<any>();
 
   chipsConfig: [{
     selected: boolean,
@@ -65,7 +66,8 @@ export class ChipListComponent implements OnInit, OnChanges {
       }
     }
 
-    this.selectedItemsChanged.emit(item);
+    this.selectedItemsChanged.emit(this.selectedItems);
+    this.chipClicked.emit(item);
   }
 
 }

@@ -1,4 +1,4 @@
-<ion-list *transloco="let t">
+<ion-list *transloco="let t" [formGroup]="formGroup">
   <ion-item-group>
     <ion-item-divider>
       <ion-label>Basic Information</ion-label>
@@ -6,19 +6,20 @@
   </ion-item-group>
   <ion-item>
     <ion-label position="stacked">Name</ion-label>
-    <ion-input></ion-input>
+    <ion-input formControlName="name"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="stacked">Year</ion-label>
-    <ion-input type="number"></ion-input>
+    <ion-input type="number" formControlName="year"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="stacked">{{ t('Producer')}}</ion-label>
-    <ion-input></ion-input>
+    <ion-input formControlName="producer"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="stacked">Tasted on</ion-label>
-    <ion-datetime [value]="undefined" displayFormat="DD.MM.YYYY"></ion-datetime>
+    <ion-datetime [value]="undefined" displayFormat="DD.MM.YYYY" formControlName="tastedOn"></ion-datetime>
   </ion-item>
-  <app-grapes-selection></app-grapes-selection>
+  <app-grapes-selection formControlName="grapes"></app-grapes-selection>
 </ion-list>
+{{formGroup.get('grapes').value}}

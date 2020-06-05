@@ -1,44 +1,43 @@
 import { Injectable } from '@angular/core';
-import { Grape } from './grape';
 import { Observable, of } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
+import { GrapeModel, GrapeType } from '../models/grape.model';
 
 @Injectable({
     providedIn: 'root'
 })
-export class GrapeApiService {
-
-    getAllGrapes(): Observable<Grape[]> {
-        const items: Grape[] = [
+export class GrapeService {
+    getAllGrapes(): Observable<GrapeModel[]> {
+        const items: GrapeModel[] = [
             {
                 name: 'sauvignonBlanc',
                 isFavorite: false,
-                type: 'white'
+                type: GrapeType.white
             },
             {
                 name: 'riesling',
                 isFavorite: true,
-                type: 'white'
+                type: GrapeType.white
             },
             {
                 name: 'Chardonnay',
                 isFavorite: false,
-                type: 'white'
+                type: GrapeType.white
             },
             {
                 name: 'merlot',
                 isFavorite: true,
-                type: 'red'
+                type: GrapeType.red
             },
             {
                 name: 'Tempranillo',
                 isFavorite: true,
-                type: 'red'
+                type: GrapeType.red
             },
             {
                 name: 'Pinot Noir',
                 isFavorite: false,
-                type: 'red'
+                type: GrapeType.red
             }
         ];
 

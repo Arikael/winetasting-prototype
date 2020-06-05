@@ -16,6 +16,7 @@ import { TasteItemComponent } from './shared/taste-item/taste-item.component';
 import { TasteItemDetailComponent } from './shared/taste-item/taste-item-detail/taste-item-detail.component';
 import { TasteItemButtonDetailComponent } from './shared/taste-item/taste-item-detail/taste-item-button-detail-component/taste-item-button-detail.component';
 import { SharedModule } from '../shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [

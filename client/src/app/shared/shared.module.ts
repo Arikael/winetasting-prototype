@@ -7,6 +7,7 @@ import { WizardStep } from '../wizard/wizard-step';
 import { WizardStepComponent } from '../wizard/wizard-step.component';
 import { WizardComponent } from '../wizard/wizard.component';
 import { WizardStepperComponent } from '../wizard/wizard-stepper/wizard-stepper.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -21,12 +22,14 @@ import { WizardStepperComponent } from '../wizard/wizard-stepper/wizard-stepper.
     CommonModule,
     IonicModule,
     TranslocoModule,
+    ReactiveFormsModule
   ],
   exports: [
     ChipListComponent,
     WizardComponent,
     WizardStepComponent,
-    WizardStepperComponent
+    WizardStepperComponent,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }

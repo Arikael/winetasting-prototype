@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, AfterContentInit } from '@angular/core';
-import { TasteService } from '../../services/taste.service';
+import { TasteApiService } from '../../../api/taste-api.service';
 import { Observable } from 'rxjs';
 import { TasteCategory } from '../../models/taste-category';
 import { delay } from 'rxjs/operators';
@@ -12,7 +12,7 @@ import { delay } from 'rxjs/operators';
 export class TastesComponent implements OnInit, AfterViewInit, AfterContentInit {
   tasteCategories: Observable<TasteCategory[]>;
 
-  constructor(private tasteService: TasteService) { }
+  constructor(private tasteService: TasteApiService) { }
   ngAfterContentInit(): void {
     this.tasteCategories = this.tasteService.getTasteCatgories('').pipe(delay(0));
 

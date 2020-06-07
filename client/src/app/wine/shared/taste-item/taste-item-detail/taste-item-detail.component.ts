@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TasteIntensityService } from 'src/app/wine/services/taste-intensity.service';
+import { TasteIntensityApiService } from 'src/app/api/taste-intensity-api.service';
 import { forkJoin } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { TasteQualifier } from 'src/app/wine/models/taste-qualifier';
@@ -17,7 +17,7 @@ export class TasteItemDetailComponent implements OnInit {
   tasteQualifiers: TasteQualifier[] = [];
   tasteTimeQuantifiers: TasteTimeQuantifier[] = [];
 
-  constructor(private tasteIntensityService: TasteIntensityService, private modalController: ModalController) { }
+  constructor(private tasteIntensityService: TasteIntensityApiService, private modalController: ModalController) { }
 
   ngOnInit() {
     forkJoin([this.tasteIntensityService.getTasteQualifiers(),

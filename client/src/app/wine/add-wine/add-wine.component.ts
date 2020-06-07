@@ -4,11 +4,29 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { WineApiService } from 'src/app/api/wine-api.service';
 import { WineFormModel } from '../models/wine/wine.form-model';
 import { WineFormModelFactory } from '../services/wine-form-model-factory';
+import { FormService } from 'src/app/core/form.service';
+import { WineFormService } from '../services/wine-form.service';
+import { FormModelFactory } from '../services/form-model-factory';
+
+export function formServiceFactory(formBuilder: FormBuilder, modelFactory: FormModelFactory) {
+  return new WineFormService(formBuilder, modelFactory.createWineFormModel());
+}
 
 @Component({
   selector: 'app-add-wine',
   templateUrl: './add-wine.component.html',
   styleUrls: ['./add-wine.component.scss'],
+  providers: [
+    {
+      provide: FormService,
+      useFactory: formServiceFactory,
+      deps: [FormBuilder, FormModelFactory]
+    },
+    {
+      provide: FormModelFactory,
+      useClass: WineFormModelFactory
+    }
+  ]
 })
 export class AddWineComponent implements OnInit {
 
@@ -16,7 +34,7 @@ export class AddWineComponent implements OnInit {
   wineForm: FormGroup;
   wineModel: WineFormModel = null;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formService: FormService<WineFormModel>) {
     const steps = [
       {
         key: 'base',
@@ -37,18 +55,9 @@ export class AddWineComponent implements OnInit {
     ];
 
     this.wizardConfig = WizardConfig.create(steps);
-    this.wineForm = formBuilder.group({
-      base: formBuilder.group({
-        name: formBuilder.control('TEST'),
-        year: formBuilder.control('2019'),
-        producer: formBuilder.control(''),
-        tastedOn: formBuilder.control(new Date()),
-        grapes: formBuilder.control([])
-      })
-    });
+    this.wineForm = formService.getForm();
   }
 
   ngOnInit() {
-    this.wineForm.patchValue(new WineFormModelFactory().createWineFormModel());
   }
 }

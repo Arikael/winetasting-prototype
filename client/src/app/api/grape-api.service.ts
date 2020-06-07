@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
-import { GrapeModel, GrapeType } from '../models/grape.model';
+import { GrapeModel, GrapeType } from '../wine/models/grape.model';
 
 @Injectable({
     providedIn: 'root'
 })
-export class GrapeService {
+export class GrapeApiService {
     getAllGrapes(): Observable<GrapeModel[]> {
         const items: GrapeModel[] = [
             {

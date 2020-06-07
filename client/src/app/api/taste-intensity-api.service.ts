@@ -1,12 +1,12 @@
 import { Observable, of } from 'rxjs';
-import { TasteQualifier } from '../models/taste-qualifier';
-import { TasteTimeQuantifier } from '../models/taste-time-quantifier';
+import { TasteQualifier } from '../wine/models/taste-qualifier';
+import { TasteTimeQuantifier } from '../wine/models/taste-time-quantifier';
 import { Injectable } from '@angular/core';
 @Injectable({
     providedIn: 'root'
 }
 )
-export class TasteIntensityService {
+export class TasteIntensityApiService {
     getTasteQualifiers(): Observable<TasteQualifier[]> {
         return of([
             {

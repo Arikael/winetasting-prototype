@@ -17,7 +17,8 @@ import { WineListItemComponent } from './wine/wine-list/wine-list-item/wine-list
 import { TranslocoRootModule } from './transloco-root.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
-import { WineFormService, FormService } from './wine/services/wine-form.service';
+import { WineFormService } from './wine/services/wine-form.service';
+import { FormService } from './core/form.service';
 
 @NgModule({
   declarations: [
@@ -44,11 +45,7 @@ import { WineFormService, FormService } from './wine/services/wine-form.service'
     Platform,
     SplashScreen,
     LocalStorageService,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    {
-      provide: FormService,
-      useClass: WineFormService
-    }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
 })

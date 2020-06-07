@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { TasteCategory } from '../models/taste-category';
+import { TasteCategory } from '../wine/models/taste-category';
 import { map } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
 })
-export class TasteService {
+export class TasteApiService {
     getTasteCatgories(...grapes: string[]): Observable<TasteCategory[]> {
         return of([
             {

@@ -5,5 +5,5 @@ export class WineBaseDataModel {
     year = 0;
     producer = '';
     grapes: string[] = [];
-    tastedOn = new Date();
+    tastedOn = '';
 }

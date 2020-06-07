@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { GrapeModel, GrapeType } from 'src/app/wine/models/grape.model';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { GrapeService } from '../../services/grape.service';
+import { GrapeApiService } from '../../../api/grape-api.service';
 import { IonSelect } from '@ionic/angular';
 
 
@@ -27,7 +27,7 @@ export class GrapeSelectionView {
 })
 export class GrapesSelectionComponent implements ControlValueAccessor {
 
-  constructor(private grapeService: GrapeService) { }
+  constructor(private grapeService: GrapeApiService) { }
 
   get favoriteGrapes(): Observable<GrapeModel[]> {
     return this.grapeService.getAllGrapes().pipe(

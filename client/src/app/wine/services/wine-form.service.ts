@@ -1,19 +1,26 @@
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { WineFormModel } from '../models/wine/wine.form-model';
+import { FormService } from 'src/app/core/form.service';
 
-export abstract class FormService {
-    protected form: FormGroup;
-    abstract getFormGroup(name: string): FormGroup;
-}
-
-export class WineFormService extends FormService {
-    constructor() {
-        super();
-
+// TODO we should add FormModels for every form not one monolithic one.
+export class WineFormService extends FormService<WineFormModel> {
+    constructor(formBuilder: FormBuilder, formModel: WineFormModel | null) {
+        super(formBuilder, formModel);
     }
 
-    getFormGroup(name: string): FormGroup {
-        const formGroup = this.form.get(name) as FormGroup;
+    getForm(): FormGroup {
+        return this.form;
+    }
 
-        return formGroup;
+    createForm() {
+        this.form = this.formBuilder.group({
+            base: this.formBuilder.group({
+                name: this.formBuilder.control(''),
+                year: this.formBuilder.control(''),
+                producer: this.formBuilder.control(''),
+                tastedOn: this.formBuilder.control(new Date()),
+                grapes: this.formBuilder.control([])
+            })
+        });
     }
 }

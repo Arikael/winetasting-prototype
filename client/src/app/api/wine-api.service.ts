@@ -2,6 +2,7 @@ import { Observable, of } from 'rxjs';
 import { ConnectorService } from '../connectors/connector-service';
 import { Injectable } from '@angular/core';
 import { WineListItem } from '../wine/wine-list/wine-list-item';
+import { WineDto } from './dtos/wine.dto';
 
 @Injectable({
     providedIn: 'root'
@@ -28,6 +29,10 @@ export class WineApiService {
             producer: 'Kai Schätzel',
             rating: 5,
         }]);
+    }
+
+    saveWine(wine: WineDto) {
+
     }
 }
 

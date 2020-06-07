@@ -1,7 +1,7 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TasteCategory } from '../../models/taste-category';
-import { TasteService } from '../../services/taste.service';
+import { TasteApiService } from '../../../api/taste-api.service';
 
 @Component({
   selector: 'app-nose',
@@ -14,7 +14,7 @@ export class NoseComponent implements OnInit, OnChanges {
     return this.tasteService.getTasteCatgories('');
   }
 
-  constructor(private tasteService: TasteService) { }
+  constructor(private tasteService: TasteApiService) { }
   ngOnChanges(changes: import('@angular/core').SimpleChanges): void {
     console.log(changes);
   }

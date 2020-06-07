@@ -1,29 +1,62 @@
+$tasteColors: ("earth", "herbs", "citrus", "fruit", "tropicalFruit", "redFruit");
+
 :root{
-    --earth-category-background: #e1cfbd; 
-    --earth-category-title-color: #5f453a;
-    --earth-taste-background: #d3b89d;
+    --ion-color-earth: #5f453a;
+    --ion-color-earth-rgb: 95,69,58;
+    --ion-color-earth-contrast: #ffffff;
+    --ion-color-earth-contrast-rgb: 255,255,255;
+    --ion-color-earth-shade: #543d33;
+    --ion-color-earth-tint: #6f584e;
 
-    --herbs-category-background: #e8f5be; 
-    --herbs-category-title-color: #506624;
-    --herbs-taste-background: #d9ef94;
-    
-    --citrus-category-background: #fdf6b4; 
-    --citrus-category-title-color: #6d6303;
-    --citrus-taste-background: #fcf18d;
+    --ion-color-herbs: #5f453a;
+    --ion-color-herbs-rgb: 95,69,58;
+    --ion-color-herbs-contrast: #ffffff;
+    --ion-color-herbs-contrast-rgb: 255,255,255;
+    --ion-color-herbs-shade: #543d33;
+    --ion-color-herbs-tint: #6f584e;
 
-    --fruit-category-background: #fff4d2; 
-    --fruit-category-title-color: #805400;
-    --fruit-taste-background: #ffebad;
+    --ion-color-citrus: #6d6303;
+    --ion-color-citrus-rgb: 109,99,3;
+    --ion-color-citrus-contrast: #ffffff;
+    --ion-color-citrus-contrast-rgb: 255,255,255;
+    --ion-color-citrus-shade: #605703;
+    --ion-color-citrus-tint: #7c731c;
 
-    --tropicalFruit-category-background: #ffe4bb; 
-    --tropicalFruit-category-title-color: #8a5300;
-    --tropicalFruit-taste-background: #ffd596;
+    --ion-color-fruit: #6d6303;
+    --ion-color-fruit-rgb: 109,99,3;
+    --ion-color-fruit-contrast: #ffffff;
+    --ion-color-fruit-contrast-rgb: 255,255,255;
+    --ion-color-fruit-shade: #605703;
+    --ion-color-fruit-tint: #7c731c;
 
-    --redFruit-category-background: #f4c7cc; 
-    --redFruit-category-title-color: #8d1b4d;
-    --redFruit-taste-background: #eda0a8;
+    --ion-color-tropicalFruit: #8a5300;
+    --ion-color-tropicalFruit-rgb: 138,83,0;
+    --ion-color-tropicalFruit-contrast: #ffffff;
+    --ion-color-tropicalFruit-contrast-rgb: 255,255,255;
+    --ion-color-tropicalFruit-shade: #794900;
+    --ion-color-tropicalFruit-tint: #96641a;
+
+    --ion-color-redFruit: #8d1b4d;
+    --ion-color-redFruit-rgb: 141,27,77;
+    --ion-color-redFruit-contrast: #ffffff;
+    --ion-color-redFruit-contrast-rgb: 255,255,255;
+    --ion-color-redFruit-shade: #7c1844;
+    --ion-color-redFruit-tint: #98325f; 
 }
 
+
+@each $color in $tasteColors {
+    .ion-color-#{color} {
+        --ion-color-base: var(--ion-color-#{$color}) !important;
+        --ion-color-base-rgb: var(--ion-color-#{$color}-rgb) !important;
+        --ion-color-contrast: var(--ion-color-#{$color}-contrast) !important;
+        --ion-color-contrast-rgb: var(--ion-color-#{$color}-contrast-rgb) !important;
+        --ion-color-shade: var(--ion-color-#{$color}-shade) !important;
+        --ion-color-tint: var(--ion-color-#{$color}-tint) !important;
+    }
+}
+
+/*
 .earth.taste-category {
     background: var(--earth-category-background);
 }
@@ -100,4 +133,4 @@
 .redFruit.taste,
 .redFruit .taste {
     background: var(--redFruit-taste-background);
-}
+}*/

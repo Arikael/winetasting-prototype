@@ -10,7 +10,7 @@
   <form [formGroup]="wineForm">
     <ng-container [ngSwitch]="wizardConfig?.selectedStep.key">
       <app-base-data *ngSwitchCase="'base'" [formGroup]="wineForm.get('base')"></app-base-data>
-      <app-nose *ngSwitchCase="'nose'"></app-nose>
+      <app-nose *ngSwitchCase="'nose'" [formGroup]="wineForm.get('nose')"></app-nose>
       <app-palate *ngSwitchCase="'palate'"></app-palate>
       <app-summary *ngSwitchCase="'rating'"></app-summary>
     </ng-container>

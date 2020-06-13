@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Input, NgZone,
 import { ControlValueAccessor } from '@angular/forms';
 import { ModalController, GestureController } from '@ionic/angular';
 import { createTapAndDoubleTapGestureOnStart } from 'src/app/gestures-animations/tap-and-doubletap.gesture';
-import { TasteModel } from '../../models/taste.model';
+import { TasteFormModel } from '../../models/taste.form-model';
 import { TasteItemDetailComponent } from './taste-item-detail/taste-item-detail.component';
 
 @Component({
@@ -16,9 +16,9 @@ export class TasteItemComponent implements OnInit, AfterViewInit, ControlValueAc
   @Input() tasteKey = '';
   @Input() hasIcon = false;
   @ViewChild('tasteItem') tasteDiv: ElementRef;
-  private value: TasteModel = null;
+  private value: TasteFormModel = null;
   private onChange: () => {};
-  private onBlur: () => {};
+  private onTouched: () => {};
 
   isSelected = false;
 
@@ -35,7 +35,7 @@ export class TasteItemComponent implements OnInit, AfterViewInit, ControlValueAc
 
   constructor(public modalController: ModalController, private gestureController: GestureController, private ngZone: NgZone,
               private cd: ChangeDetectorRef) {
-    this.value = new TasteModel();
+    this.value = new TasteFormModel();
   }
 
   ngOnInit() { }
@@ -55,7 +55,7 @@ export class TasteItemComponent implements OnInit, AfterViewInit, ControlValueAc
   }
 
   writeValue(obj: any): void {
-    if (!TasteModel.isOfType(obj)) {
+    if (!TasteFormModel.isOfType(obj)) {
       throw Error('provided value is not similar to TasteModel');
     }
 
@@ -66,7 +66,7 @@ export class TasteItemComponent implements OnInit, AfterViewInit, ControlValueAc
   }
 
   registerOnTouched(fn: any): void {
-    this.onBlur = fn;
+    this.onTouched = fn;
   }
 
   setDisabledState?(isDisabled: boolean): void {

@@ -26,9 +26,6 @@ export class GrapeSelectionView {
   ]
 })
 export class GrapesSelectionComponent implements ControlValueAccessor {
-
-  constructor(private grapeService: GrapeApiService) { }
-
   get favoriteGrapes(): Observable<GrapeModel[]> {
     return this.grapeService.getAllGrapes().pipe(
       map((item) => item.filter(arrItem => arrItem.isFavorite))
@@ -57,6 +54,8 @@ export class GrapesSelectionComponent implements ControlValueAccessor {
 
   onChange = (grapes: string[]) => { };
   onTouched = () => { };
+
+  constructor(private grapeService: GrapeApiService) { }
 
   writeValue(obj: any): void {
     if (Array.isArray(obj)) {

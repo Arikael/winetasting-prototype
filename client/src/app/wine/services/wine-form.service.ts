@@ -20,6 +20,9 @@ export class WineFormService extends FormService<WineFormModel> {
                 producer: this.formBuilder.control(''),
                 tastedOn: this.formBuilder.control(new Date()),
                 grapes: this.formBuilder.control([])
+            }),
+            nose: this.formBuilder.group({
+                tastes: this.formBuilder.array([])
             })
         });
     }

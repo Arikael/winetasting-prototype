@@ -1,6 +1,6 @@
 import { GrapeModel } from '../grape.model';
 
-export class WineBaseDataModel {
+export class WineBaseDataFormModel {
     name = '';
     year = 0;
     producer = '';

@@ -1,8 +1,10 @@
-import { WineBaseDataModel } from './wine-base-data.form-model';
-import { TasteModel } from '../taste.model';
+import { WineBaseDataFormModel } from './wine-base-data.form-model';
+import { TasteFormModel } from '../taste.form-model';
+import { WineNoseFormModel } from './wine-nose.form.model';
 
 export class WineFormModel {
     id = '';
-    base = new WineBaseDataModel();
-    tastes: TasteModel[] = [];
+    base = new WineBaseDataFormModel();
+    nose = new WineNoseFormModel();
+    tastes: TasteFormModel[] = [];
 }

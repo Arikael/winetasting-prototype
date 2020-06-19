@@ -8,7 +8,6 @@ export function createTapAndDoubleTapGestureOnStart(onTap: () => void, onDoubleT
 
             if (Math.abs(now - lastOnStart) <= doubleTapThreshold) {
                 clearTimeout(timeout);
-                console.log('double');
                 lastOnStart = 0;
                 onDoubleTap();
             } else {

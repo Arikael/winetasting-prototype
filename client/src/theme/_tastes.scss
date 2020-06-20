@@ -1,4 +1,4 @@
-$tasteColors: ("earth", "herbs", "citrus", "fruit", "tropicalFruit", "redFruit");
+@import "custom-variables";
 
 :root{
     --ion-color-earth: #5f453a;
@@ -8,33 +8,33 @@ $tasteColors: ("earth", "herbs", "citrus", "fruit", "tropicalFruit", "redFruit")
     --ion-color-earth-shade: #543d33;
     --ion-color-earth-tint: #6f584e;
 
-    --ion-color-herbs: #5f453a;
-    --ion-color-herbs-rgb: 95,69,58;
+    --ion-color-herbs: #50660F;
+    --ion-color-herbs-rgb: 80,102,15;
     --ion-color-herbs-contrast: #ffffff;
     --ion-color-herbs-contrast-rgb: 255,255,255;
-    --ion-color-herbs-shade: #543d33;
-    --ion-color-herbs-tint: #6f584e;
+    --ion-color-herbs-shade: #465a0d;
+    --ion-color-herbs-tint: #627527;
 
-    --ion-color-citrus: #6d6303;
-    --ion-color-citrus-rgb: 109,99,3;
-    --ion-color-citrus-contrast: #ffffff;
-    --ion-color-citrus-contrast-rgb: 255,255,255;
-    --ion-color-citrus-shade: #605703;
-    --ion-color-citrus-tint: #7c731c;
+    --ion-color-citrus: #eaea15;
+    --ion-color-citrus-rgb: 234,234,21;
+    --ion-color-citrus-contrast: #000000;
+    --ion-color-citrus-contrast-rgb: 0,0,0;
+    --ion-color-citrus-shade: #cece12;
+    --ion-color-citrus-tint: #ecec2c;
 
-    --ion-color-fruit: #6d6303;
-    --ion-color-fruit-rgb: 109,99,3;
-    --ion-color-fruit-contrast: #ffffff;
-    --ion-color-fruit-contrast-rgb: 255,255,255;
-    --ion-color-fruit-shade: #605703;
-    --ion-color-fruit-tint: #7c731c;
+    --ion-color-fruit: #edbb52;
+    --ion-color-fruit-rgb: 237,187,82;
+    --ion-color-fruit-contrast: #000000;
+    --ion-color-fruit-contrast-rgb: 0,0,0;
+    --ion-color-fruit-shade: #d1a548;
+    --ion-color-fruit-tint: #efc263;
 
-    --ion-color-tropicalFruit: #8a5300;
-    --ion-color-tropicalFruit-rgb: 138,83,0;
-    --ion-color-tropicalFruit-contrast: #ffffff;
-    --ion-color-tropicalFruit-contrast-rgb: 255,255,255;
-    --ion-color-tropicalFruit-shade: #794900;
-    --ion-color-tropicalFruit-tint: #96641a;
+    --ion-color-tropicalFruit: #ff8000;
+    --ion-color-tropicalFruit-rgb: 255,128,0;
+    --ion-color-tropicalFruit-contrast: #000000;
+    --ion-color-tropicalFruit-contrast-rgb: 0,0,0;
+    --ion-color-tropicalFruit-shade: #e07100;
+    --ion-color-tropicalFruit-tint: #ff8d1a;
 
     --ion-color-redFruit: #8d1b4d;
     --ion-color-redFruit-rgb: 141,27,77;
@@ -53,5 +53,9 @@ $tasteColors: ("earth", "herbs", "citrus", "fruit", "tropicalFruit", "redFruit")
         --ion-color-contrast-rgb: var(--ion-color-#{$color}-contrast-rgb) !important;
         --ion-color-shade: var(--ion-color-#{$color}-shade) !important;
         --ion-color-tint: var(--ion-color-#{$color}-tint) !important;
+    }
+
+    .ion-color-icon-#{$color} {
+        background: rgba(var(--ion-color-#{$color}-rgb), 0.25);
     }
 }

@@ -1,44 +1,29 @@
-:host {
-    font-size: 11px;
+@import "../../../../theme/custom-variables";
+
+.taste-item__icon {
+    border-radius: 16px;
+    margin-left: -6px;
+    
+    .icon-inner {
+        visibility: hidden;
+    }
 }
 
-.taste {
-    text-align: center;
-    position: relative;
-    width: 100%;
-    display: flex;
-    cursor: pointer;
+.taste-item__label {
+    letter-spacing: 1px;
 }
 
-.taste.taste.selected {
-    background: #80808078;
-}
+@each $color in $tasteColors {
+    .taste-item.ion-color-#{$color}.selected {
+        background: var(--ion-color-#{$color}-shade);
+        color: var(--ion-color-herbs-contrast);
+    }
 
-.taste::before {
-    display: block;
-    content: "";
-    margin-top: 75%;
-}
+    .taste-item.ion-color-#{$color}.taste-item__label {
+        background: var(--ion-color-#{$color});
 
-.taste__content {
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.taste__description-container {
-    margin: 0;
-    text-align: center;
-    flex: 1 0 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
+        .icon-inner {
+            visibility: visible;
+        }
+    }
 }

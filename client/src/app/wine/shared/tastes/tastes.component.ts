@@ -1,9 +1,9 @@
-import { Component, OnInit, AfterViewInit, AfterContentInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, AfterViewInit, AfterContentInit, Input, OnChanges, SimpleChanges, forwardRef } from '@angular/core';
 import { TasteApiService } from '../../../api/taste-api.service';
 import { Observable } from 'rxjs';
 import { TasteCategory } from '../../models/taste-category';
 import { delay, tap } from 'rxjs/operators';
-import { ControlValueAccessor, FormArray, FormControl, ControlContainer, FormGroup } from '@angular/forms';
+import { ControlValueAccessor, FormArray, FormControl, ControlContainer, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TasteFormModel } from '../../models/taste.form-model';
 import { TastesFormModel } from '../../models/tastes.form-model';
 
@@ -11,6 +11,13 @@ import { TastesFormModel } from '../../models/tastes.form-model';
   selector: 'app-tastes',
   templateUrl: './tastes.component.html',
   styleUrls: ['./tastes.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => TastesComponent),
+      multi: true
+    }
+  ]
 })
 export class TastesComponent implements OnInit, ControlValueAccessor, OnChanges {
 
@@ -30,6 +37,7 @@ export class TastesComponent implements OnInit, ControlValueAccessor, OnChanges 
   onTouched = () => { };
 
   constructor(private tasteService: TasteApiService, private controlContainer: ControlContainer) { }
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.tastesOptions) {
       const changedTasteOptions = changes.tastesOptions.currentValue;

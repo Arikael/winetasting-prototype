@@ -7,6 +7,7 @@ import { ControlContainer, FormGroup } from '@angular/forms';
 import { TastesFormModel } from '../../models/tastes.form-model';
 import { TastesFormModelMapper } from '../../services/tastes.form-model.mapper';
 import { map } from 'rxjs/operators';
+import { TasteFormModel } from '../../models/taste.form-model';
 
 @Component({
   selector: 'app-nose',
@@ -20,7 +21,9 @@ export class NoseComponent implements OnInit, OnChanges {
       : null;
   }
 
-   getTastesOptions(): Observable<TastesFormModel> {
+  tastesModel: TastesFormModel;
+
+  getTastesOptions(): Observable<TastesFormModel> {
     // TODO: use DI
     const mapper = new TastesFormModelMapper();
 
@@ -36,7 +39,6 @@ export class NoseComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    console.log(this.controlContainer.control instanceof FormGroup);
+    this.getTastesOptions().subscribe(x => this.tastesModel = x);
   }
-
 }

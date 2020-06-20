@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 })
 export class TasteApiService {
     getTasteCatgories(...grapes: string[]): Observable<TasteCategory[]> {
-        return of([
+       return of([
             {
                 name: 'earth',
                 color: '',

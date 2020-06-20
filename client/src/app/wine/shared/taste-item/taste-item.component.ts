@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Input, NgZone, ChangeDetectorRef } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
-import { ModalController, GestureController } from '@ionic/angular';
+import { ModalController, GestureController, IonChip } from '@ionic/angular';
 import { createTapAndDoubleTapGestureOnStart } from 'src/app/gestures-animations/tap-and-doubletap.gesture';
 import { TasteFormModel } from '../../models/taste.form-model';
 import { TasteItemDetailComponent } from './taste-item-detail/taste-item-detail.component';
@@ -15,16 +15,19 @@ export class TasteItemComponent implements OnInit, AfterViewInit, ControlValueAc
   @Input() tasteCategory = '';
   @Input() tasteKey = '';
   @Input() hasIcon = false;
-  @ViewChild('tasteItem') tasteDiv: ElementRef;
+  @ViewChild('tasteItem', { read: ElementRef }) tasteItem: any;
   private value: TasteFormModel = null;
   private onChange: () => {};
   private onTouched: () => {};
 
+  get iconName() {
+    return this.isSelected ? 'checkmark-outline' : '';
+  }
   isSelected = false;
 
   get ngClassObj() {
     const obj = {
-      taste: true,
+      'taste-item': true,
       selected: this.isSelected,
     };
 
@@ -41,9 +44,10 @@ export class TasteItemComponent implements OnInit, AfterViewInit, ControlValueAc
   ngOnInit() { }
 
   ngAfterViewInit(): void {
+    console.log('test');
     const tapAndDoubleTapGesture = this.gestureController.create({
       gestureName: 'tapAndDoubleTap',
-      el: this.tasteDiv.nativeElement,
+      el: this.tasteItem.nativeElement,
       threshold: 0,
       onStart: createTapAndDoubleTapGestureOnStart(
         () => this.ngZone.run(() => this.toggleSelectedState()),

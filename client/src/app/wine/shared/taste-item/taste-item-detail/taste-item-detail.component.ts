@@ -5,6 +5,8 @@ import { tap } from 'rxjs/operators';
 import { TasteQualifier } from 'src/app/wine/models/taste-qualifier';
 import { TasteTimeQuantifier } from 'src/app/wine/models/taste-time-quantifier';
 import { ModalController } from '@ionic/angular';
+import { TasteSelectFormModel } from 'src/app/wine/models/taste.form-model';
+import { TasteItemButtonDetailFinishedEventArgs } from './taste-item-button-detail-component/taste-item-button-detail.component';
 
 @Component({
   selector: 'app-taste-item-detail',
@@ -12,7 +14,7 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./taste-item-detail.component.scss'],
 })
 export class TasteItemDetailComponent implements OnInit {
-  @Input() tasteKey = '';
+  @Input() taste: TasteSelectFormModel = new TasteSelectFormModel();
   tasteIntensitiesLoaded = false;
   tasteQualifiers: TasteQualifier[] = [];
   tasteTimeQuantifiers: TasteTimeQuantifier[] = [];
@@ -31,10 +33,14 @@ export class TasteItemDetailComponent implements OnInit {
   }
 
   dismissModal(event: any) {
-    this.modalController.dismiss();
+    this.modalController.dismiss({hasChanged: false});
   }
 
-  finishEdit(data: any) {
-    this.modalController.dismiss();
+  finishEdit(data: TasteItemButtonDetailFinishedEventArgs) {
+    this.taste.when = data.tasteTimeQuantifier.key;
+    this.taste.howMuch = data.tasteQualifier.key;
+    this.taste.isSelected = true;
+
+    this.modalController.dismiss({hasChanged: true});
   }
 }

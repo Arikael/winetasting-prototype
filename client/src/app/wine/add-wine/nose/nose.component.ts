@@ -7,7 +7,7 @@ import { ControlContainer, FormGroup } from '@angular/forms';
 import { TastesFormModel } from '../../models/tastes.form-model';
 import { TastesFormModelMapper } from '../../services/tastes.form-model.mapper';
 import { map } from 'rxjs/operators';
-import { TasteFormModel } from '../../models/taste.form-model';
+import { TasteSelectFormModel } from '../../models/taste.form-model';
 
 @Component({
   selector: 'app-nose',

@@ -1,10 +1,7 @@
 import { Component, OnInit, AfterViewInit, AfterContentInit, Input, OnChanges, SimpleChanges, forwardRef } from '@angular/core';
 import { TasteApiService } from '../../../api/taste-api.service';
-import { Observable } from 'rxjs';
-import { TasteCategory } from '../../models/taste-category';
-import { delay, tap } from 'rxjs/operators';
 import { ControlValueAccessor, FormArray, FormControl, ControlContainer, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { TasteFormModel } from '../../models/taste.form-model';
+import { TasteSelectFormModel } from '../../models/taste.form-model';
 import { TastesFormModel } from '../../models/tastes.form-model';
 
 @Component({
@@ -21,19 +18,21 @@ import { TastesFormModel } from '../../models/tastes.form-model';
 })
 export class TastesComponent implements OnInit, ControlValueAccessor, OnChanges {
 
-  @Input() tastesOptions: TastesFormModel | TasteFormModel[];
+  @Input() tastesOptions: TastesFormModel | TasteSelectFormModel[];
   typedTastesOptions: TastesFormModel;
 
-  formArray: FormArray;
+  private value: TasteSelectFormModel[];
+
+  /*formArray: FormArray;
   get formGroup(): FormGroup {
     if (this.controlContainer?.control instanceof FormArray) {
       return this.controlContainer.control.parent as FormGroup;
     }
 
     return null;
-  }
+  }*/
 
-  onChange = (tastes: TasteFormModel[]) => { };
+  onChange = (tastes: TasteSelectFormModel[]) => { };
   onTouched = () => { };
 
   constructor(private tasteService: TasteApiService, private controlContainer: ControlContainer) { }
@@ -51,12 +50,12 @@ export class TastesComponent implements OnInit, ControlValueAccessor, OnChanges 
   }
 
   // TODO improve
-  isTastesFormModel(value: TastesFormModel | TasteFormModel[]): value is TastesFormModel {
+  isTastesFormModel(value: TastesFormModel | TasteSelectFormModel[]): value is TastesFormModel {
     return value.hasOwnProperty('categories');
   }
 
   writeValue(obj: any): void {
-
+    this.value = obj || [];
   }
 
   registerOnChange(fn: any): void {
@@ -71,8 +70,24 @@ export class TastesComponent implements OnInit, ControlValueAccessor, OnChanges 
     throw new Error('Method not implemented.');
   }
 
+  onTasteSelectionChanged(value: TasteSelectFormModel) {
+    this.syncTaste(value);
+
+    this.onChange(this.value);
+  }
+
   ngOnInit() {
     // console.log(this.controlContainer.control instanceof );
   }
 
+
+  private syncTaste(tasteToSync: TasteSelectFormModel) {
+    const existantValue = this.value.findIndex(x => x.tasteKey === tasteToSync.tasteKey);
+
+    if (tasteToSync.isSelected && existantValue === -1) {
+      this.value.push(tasteToSync);
+    } else if (!tasteToSync.isSelected && existantValue > -1) {
+      this.value.splice(existantValue, 1);
+    }
+  }
 }

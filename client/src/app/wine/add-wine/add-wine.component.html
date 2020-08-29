@@ -15,6 +15,7 @@
       <app-summary *ngSwitchCase="'rating'"></app-summary>
     </ng-container>
   </form>
+  {{ wineForm.value | json}}
 </ion-content>
 <ion-footer>
   <app-wizard-stepper [config]="wizardConfig"></app-wizard-stepper>

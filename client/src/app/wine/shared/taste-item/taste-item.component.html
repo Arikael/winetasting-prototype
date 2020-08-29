@@ -1,4 +1,4 @@
-<ion-chip *transloco="let t" [color]="tasteCategory" [ngClass]="ngClassObj" #tasteItem>
-  <ion-icon [ngClass]="['ion-color-icon-' + tasteCategory, 'taste-item__icon']" [name]="iconName" ></ion-icon>
-  <ion-label class="taste-item__label">{{ t(tasteKey)}}</ion-label>
+<ion-chip *transloco="let t" [color]="value.tasteCategory" [ngClass]="ngClassObj" #tasteItem>
+  <ion-icon [ngClass]="['ion-color-icon-' + value.tasteCategory, 'taste-item__icon']" [name]="iconName" ></ion-icon>
+  <ion-label class="taste-item__label">{{ t(value.tasteKey)}}</ion-label>
 </ion-chip>

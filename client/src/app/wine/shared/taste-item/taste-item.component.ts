@@ -1,44 +1,49 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Input, NgZone, ChangeDetectorRef } from '@angular/core';
+import {
+  Component, OnInit, AfterViewInit, ViewChild, ElementRef, Input, NgZone,
+  ChangeDetectorRef, Output, EventEmitter
+} from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { ModalController, GestureController, IonChip } from '@ionic/angular';
 import { createTapAndDoubleTapGestureOnStart } from 'src/app/gestures-animations/tap-and-doubletap.gesture';
-import { TasteFormModel } from '../../models/taste.form-model';
+import { TasteSelectFormModel } from '../../models/taste.form-model';
 import { TasteItemDetailComponent } from './taste-item-detail/taste-item-detail.component';
 
+// TODO Check if CVA is needed
 @Component({
   selector: 'app-taste-item',
   templateUrl: './taste-item.component.html',
   styleUrls: ['./taste-item.component.scss']
 })
 export class TasteItemComponent implements OnInit, AfterViewInit, ControlValueAccessor {
-
-  @Input() tasteCategory = '';
-  @Input() tasteKey = '';
+  // @Input() tasteCategory = '';
+  // @Input() tasteKey = '';
   @Input() hasIcon = false;
+  @Input() value: TasteSelectFormModel = new TasteSelectFormModel();
   @ViewChild('tasteItem', { read: ElementRef }) tasteItem: any;
-  private value: TasteFormModel = null;
+
+  @Output() selectionChanged = new EventEmitter<TasteSelectFormModel>();
+
   private onChange: () => {};
   private onTouched: () => {};
 
   get iconName() {
-    return this.isSelected ? 'checkmark-outline' : '';
+    return this.value.isSelected ? 'checkmark-outline' : 'none'; // dummy value because empty string doesnt work
   }
-  isSelected = false;
 
   get ngClassObj() {
     const obj = {
       'taste-item': true,
-      selected: this.isSelected,
+      selected: this.value.isSelected,
     };
 
-    obj[this.tasteCategory] = true;
+    obj[this.value?.tasteCategory] = true;
 
     return obj;
   }
 
   constructor(public modalController: ModalController, private gestureController: GestureController, private ngZone: NgZone,
-              private cd: ChangeDetectorRef) {
-    this.value = new TasteFormModel();
+    private cd: ChangeDetectorRef) {
+    this.value = new TasteSelectFormModel();
   }
 
   ngOnInit() { }
@@ -59,12 +64,13 @@ export class TasteItemComponent implements OnInit, AfterViewInit, ControlValueAc
   }
 
   writeValue(obj: any): void {
-    if (!TasteFormModel.isOfType(obj)) {
+    if (!TasteSelectFormModel.isOfType(obj)) {
       throw Error('provided value is not similar to TasteModel');
     }
 
     this.value = obj;
   }
+
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
@@ -78,14 +84,21 @@ export class TasteItemComponent implements OnInit, AfterViewInit, ControlValueAc
   }
 
   toggleSelectedState() {
-    this.isSelected = !this.isSelected;
+    this.value.isSelected = !this.value.isSelected;
+    this.selectionChanged.emit(this.value);
   }
 
   async openDetail() {
     const modal = await this.modalController.create({
       component: TasteItemDetailComponent,
       componentProps: {
-        tasteKey: this.tasteKey
+        taste: this.value
+      }
+    });
+
+    modal.onDidDismiss().then((modalData: any) => {
+      if (modalData.data.hasChanged) {
+        this.selectionChanged.emit(this.value);
       }
     });
 

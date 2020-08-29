@@ -6,7 +6,7 @@
           <app-taste-category [category]="category.key"></app-taste-category>
         </ion-col>
         <ion-col size="4" *ngFor="let taste of category.value">
-          <app-taste-item [tasteKey]="taste.tasteKey" [tasteCategory]="category.key"></app-taste-item>
+          <app-taste-item [value]="taste" (selectionChanged)="onTasteSelectionChanged($event)"></app-taste-item>
         </ion-col>
       </ion-row>
     </ng-container>

@@ -1,7 +1,7 @@
-import { TasteFormModel } from './taste.form-model';
+import { TasteSelectFormModel } from './taste.form-model';
 
 export class TastesFormModel {
     categories: {
-        [index: string]: TasteFormModel[];
+        [index: string]: TasteSelectFormModel[];
     } = {};
 }

@@ -20,6 +20,8 @@ export class TasteItemButtonDetailComponent implements OnInit {
   @Input() tasteKey = '';
   @Input() tasteQualifiers: TasteQualifier[] = [];
   @Input() tasteTimeQuantifiers: TasteTimeQuantifier[] = [];
+  @Input() selectedTasteQualifier: TasteQualifier = new TasteQualifier();
+  @Input() selectedTasteTimeQuantifier: TasteTimeQuantifier = new TasteTimeQuantifier();
   @Output() finishedEdit = new EventEmitter<TasteItemButtonDetailFinishedEventArgs>();
   private finishedEventArgs = new TasteItemButtonDetailFinishedEventArgs();
 

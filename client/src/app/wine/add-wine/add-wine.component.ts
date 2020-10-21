@@ -7,6 +7,7 @@ import { WineFormModelFactory } from '../services/wine-form-model-factory';
 import { FormService } from 'src/app/core/form.service';
 import { WineFormService } from '../services/wine-form.service';
 import { FormModelFactory } from '../services/form-model-factory';
+import { WineFormSubmitMediator } from '../services/wine-form-submit.mediator';
 
 export function formServiceFactory(formBuilder: FormBuilder, modelFactory: FormModelFactory) {
   return new WineFormService(formBuilder, modelFactory.createWineFormModel());
@@ -25,7 +26,8 @@ export function formServiceFactory(formBuilder: FormBuilder, modelFactory: FormM
     {
       provide: FormModelFactory,
       useClass: WineFormModelFactory
-    }
+    },
+    WineFormSubmitMediator
   ]
 })
 export class AddWineComponent implements OnInit {
@@ -34,7 +36,7 @@ export class AddWineComponent implements OnInit {
   wineForm: FormGroup;
   wineModel: WineFormModel = null;
 
-  constructor(private formService: FormService<WineFormModel>) {
+  constructor(private formService: FormService<WineFormModel>, private wineFormSubmit: WineFormSubmitMediator) {
     const steps = [
       {
         key: 'base',
@@ -59,5 +61,9 @@ export class AddWineComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  saveWine() {
+    this.wineFormSubmit.action();
   }
 }

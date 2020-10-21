@@ -4,6 +4,11 @@
       <ion-back-button defaulthref="wines"></ion-back-button>
     </ion-buttons>
     <ion-title *transloco="let t">{{t('addWine')}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="primary">
+        <ion-icon name="save-outline" slot="icon-only" (click)="saveWine()"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content>

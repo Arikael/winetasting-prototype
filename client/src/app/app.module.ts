@@ -8,10 +8,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ConnectorService } from './connectors/connector-service';
-import { connectorSeviceFactory } from './app-factories.module';
+import { storageSeviceFactory } from './app-factories.module';
 import { WineApiService } from './api/wine-api.service';
-import { LocalStorageService } from './connectors/local-storage-service';
 import { WineListComponent } from './wine/wine-list/wine-list.component';
 import { WineListItemComponent } from './wine/wine-list/wine-list-item/wine-list-item.component';
 import { TranslocoRootModule } from './transloco-root.module';
@@ -19,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { WineFormService } from './wine/services/wine-form.service';
 import { FormService } from './core/form.service';
+import { StorageService } from './api/storage.service';
 
 @NgModule({
   declarations: [
@@ -37,14 +36,13 @@ import { FormService } from './core/form.service';
   ],
   providers: [
     {
-      provide: ConnectorService,
-      useFactory: connectorSeviceFactory,
+      provide: StorageService,
+      useFactory: storageSeviceFactory,
       deps: [Platform]
     },
     StatusBar,
     Platform,
     SplashScreen,
-    LocalStorageService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

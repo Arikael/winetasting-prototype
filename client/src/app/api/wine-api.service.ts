@@ -1,18 +1,17 @@
 import { Observable, of } from 'rxjs';
-import { ConnectorService } from '../connectors/connector-service';
 import { Injectable } from '@angular/core';
 import { WineListItem } from '../wine/wine-list/wine-list-item';
 import { WineDto } from './dtos/wine.dto';
+import { StorageService } from './storage.service';
 
 @Injectable({
     providedIn: 'root'
-}
-)
+})
 export class WineApiService {
     /**
      *
      */
-    constructor(private connectorService: ConnectorService) {
+    constructor(private storageService: StorageService) {
 
     }
 

@@ -1,10 +1,16 @@
 import { Platform } from '@ionic/angular';
-import { LocalStorageService } from './connectors/local-storage-service';
+import { PouchDbStorageService } from './api/pouchdb-storage.service';
+import { StorageService } from './api/storage.service';
 
-export function connectorSeviceFactory(platform: Platform) {
+export function storageSeviceFactory(platform: Platform) {
+    let storageService: StorageService;
+
     if (platform.is('hybrid')) {
-        return new LocalStorageService();
+        storageService = new PouchDbStorageService(platform);
     }
 
-    return new LocalStorageService();
+    storageService = new PouchDbStorageService(platform);
+    storageService.initialize();
+
+    return storageService;
 }

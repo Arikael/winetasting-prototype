@@ -1,12 +1,12 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaulthref="wines"></ion-back-button>
     </ion-buttons>
     <ion-title *transloco="let t">{{t('addWine')}}</ion-title>
     <ion-buttons slot="end">
-      <ion-button color="primary">
-        <ion-icon name="save-outline" slot="icon-only" (click)="saveWine()"></ion-icon>
+      <ion-button color="primary" (click)="saveWine()">
+        <ion-icon name="save" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>

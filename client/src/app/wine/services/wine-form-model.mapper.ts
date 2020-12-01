@@ -8,6 +8,13 @@ export class WineFormModelMapper implements Mapper<WineDto, WineFormModel> {
     }
 
     MapToApi(from: WineFormModel): WineDto {
-        return new WineDto();
+        const dto = new WineDto();
+        dto.base.grapes = from.base.grapes;
+        dto.base.name = from.base.name;
+        dto.base.producer = from.base.producer;
+        dto.base.tastedOn = from.base.tastedOn;
+        dto.base.year = from.base.year;
+
+        dto.nose.push()
     }
 }

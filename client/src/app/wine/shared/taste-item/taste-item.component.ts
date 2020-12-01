@@ -49,7 +49,6 @@ export class TasteItemComponent implements OnInit, AfterViewInit, ControlValueAc
   ngOnInit() { }
 
   ngAfterViewInit(): void {
-    console.log('test');
     const tapAndDoubleTapGesture = this.gestureController.create({
       gestureName: 'tapAndDoubleTap',
       el: this.tasteItem.nativeElement,
